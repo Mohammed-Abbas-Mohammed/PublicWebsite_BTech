@@ -16,10 +16,12 @@ export class AuthService {
 
   getCurrentUser(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
-  }
+  } 
 
   login(email: string, password: string): Observable<any> {
+    this.getUserId   
     return this.http.post(`${this.apiUrl}/Login`, { Email: email, Password: password });
+
   }
 
   register(userData: any): Observable<any> {
@@ -28,9 +30,15 @@ export class AuthService {
 
   signOut(): Observable<any> {
     return this.http.post(`${this.apiUrl}/signout`, {});
+
   }
+
+
   getUserId(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/UserId?id=${id}`);
+  var res=  this.http.get<any>(`${this.apiUrl}/UserId?id=${id}`);
+  console.log("the user id",res)
+     return res
+
   }
 
   loginUser(id: number): void {
