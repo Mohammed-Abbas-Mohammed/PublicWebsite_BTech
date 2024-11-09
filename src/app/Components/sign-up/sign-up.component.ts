@@ -65,10 +65,13 @@ export class SignUpComponent {
       );
     }
   }
+
   useLanguage() {
     this.translate.ChangeLanguage();
   }
+
   signin(){
     this.router.navigate(['sign-in']);
   }
+  
 }
