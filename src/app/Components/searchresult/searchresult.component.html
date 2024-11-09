@@ -1,21 +1,20 @@
-<div class="container my-4">
-    <h2 class="text-center mb-5">Search Results</h2>
+<div [dir]="isArabic ? 'rtl' : 'ltr'" class="container my-4">
+    <h2 class="text-center mb-5">{{'searchresult.search results'|translate}}</h2>
     <div class="row g-4">
       <div *ngFor="let data of products" class="col-md-4">
         <div class="card h-100 shadow-sm border-0">
           <div class="position-relative">
             <img [src]="data.product.images[0]?.url || 'https://placeholder.com/150'" class="card-img-top img-fluid" alt="{{data.product.translations[0]?.name}}">
-            <span class="badge bg-primary position-absolute top-0 start-0 m-2">New</span>
+            <span class="badge bg-primary position-absolute top-0 start-0 m-2">{{'searchresult.new'|translate}}</span>
           </div>
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title">{{ data.product.translations[0]?.name }}</h5>
-            <p class="card-text text-muted">{{ data.product.translations[0]?.description }}</p>
-            <p class="card-text text-primary fw-bold fs-5">Price: {{ data.product.price }} EGP</p>
-            <p class="card-text text-muted">Brand: {{ data.product.translations[0]?.brandName }}</p>
-            <a (click)="openProductDetails(data)" class="btn btn-outline-primary mt-auto">View Details</a>
+            <h5 class="card-title">{{ data.product.translations?.[isArabic ? 1 : 0]?.name }}</h5>
+            <p class="card-text text-muted">{{ data.product.translations?.[isArabic ? 1 : 0]?.description }}</p>
+            <p class="card-text text-primary fw-bold fs-5">{{ getFormattedPrice(data.product.price )}}</p>
+            <p class="card-text text-muted">{{'searchresult.brand'|translate}} : {{ data.product.translations?.[isArabic ? 1 : 0]?.brandName }}</p>
+            <a (click)="openProductDetails(data)" class="btn btn-outline-primary mt-auto">{{'searchresult.view details'|translate}}</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
