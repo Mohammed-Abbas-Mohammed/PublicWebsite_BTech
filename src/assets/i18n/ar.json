@@ -115,6 +115,12 @@
     "app benefits": "استمتع بالمزايا والميزات باستخدام تطبيق B.TECH",
     "greeting": "مرحباً,"
   },
+  "searchresult": {
+    "search results": "نتائج البحث",
+    "new": "جديد",
+    "brand": "العلامة التجارية",
+    "view details": "عرض التفاصيل"
+  },
   "footer": {
     "call_support": "اتصل بالدعم",
     "support_number": "19966",
