@@ -28,4 +28,6 @@ export class LocalizationService {
 
     this.translate.use(language);
   }
+
+  
 }

@@ -81,7 +81,6 @@ isPriceOpen: boolean = false;
 
 
 
-
        getAllProducts() {
         this.service.getallproducts().subscribe(
           (res: any) => {
@@ -89,9 +88,8 @@ isPriceOpen: boolean = false;
             if (res.isSuccess && Array.isArray(res.entity)) {
               this.products = res.entity;
               this.filteredProducts = this.products;
-
               // استخراج أسماء البراندات بدون تكرار
-              this.getAllBrands();
+              this.getAllBrands(); // تأكد من أنها تُنفذ بعد تحميل المنتجات
             } else {
               console.error("Unexpected data format:", res);
             }
@@ -101,20 +99,21 @@ isPriceOpen: boolean = false;
           }
         );
       }
-
       getAllBrands(): void {
         const brandSet = new Set<string>();
-        const translationIndex = this.isArabic ? 1 : 0; // Determine the index based on the current language
-
+        const translationIndex = this.isArabic ? 1 : 0; // تحديد الفهرس بناءً على اللغة الحالية
+      
         this.products.forEach(product => {
-          const brand = product.translations?.[translationIndex]?.brandName; // Use the appropriate index
+          const brand = product.translations?.[translationIndex]?.brandName; // التأكد من أن البيانات موجودة في الترجمة
           if (brand) {
-            brandSet.add(brand); // Add brands without duplicates
+            brandSet.add(brand); // إضافة البراند بدون تكرار
           }
         });
-
-        this.brands = Array.from(brandSet); // Convert Set to Array
+      
+        this.brands = Array.from(brandSet); // تحويل Set إلى Array
       }
+      
+     
 
   getAllCategory() {
     this.catservice.getallcategory().subscribe((res: any) => {
@@ -132,38 +131,37 @@ isPriceOpen: boolean = false;
   }
 
   applyFilters(): void {
-    // أولاً، الحصول على نطاق السعر المحدد إذا كان متاحًا
+    // الحصول على نطاق السعر المحدد
     const selectedPriceOption = this.priceOptions.find(option => option.name === this.selectedPrice);
     const minPrice = selectedPriceOption ? selectedPriceOption.min : 0;
     const maxPrice = selectedPriceOption ? selectedPriceOption.max : Infinity;
-
-    // الحصول على `categoryId` الخاص بالفئة المحددة
+  
+    // الحصول على `categoryId` الخاص بالفئة المحددة بناءً على اللغة
     const selectedCategoryId = this.categories.find(
-
-      cat => cat.translations?.[0]?.categoryName === this.selectedCategory
+      cat => cat.translations?.[this.isArabic ? 1 : 0]?.categoryName === this.selectedCategory // التأكد من استخدام الفهرس الصحيح
     )?.id;
-
-    console.log(selectedCategoryId)
-
-    // تصفية المنتجات بناءً على كل المعايير المحددة: الفئة، البراند، والسعر
+  
+    console.log(selectedCategoryId);
+  
+    // تصفية المنتجات بناءً على الفئة، البراند، والسعر
     this.filteredProducts = this.products.filter(product => {
-      // التحقق مما إذا كان المنتج يطابق الفئة المحددة
       const matchesCategory = this.selectedCategory
         ? product.productCategories?.some(category => category.categoryId === selectedCategoryId)
-        : true;
-
-      // التحقق مما إذا كان المنتج يطابق البراند المحدد
-      const matchesBrand = this.selectedBrand
-        ? product.translations?.[0]?.brandName === this.selectedBrand
-        : true;
-
-      // التحقق مما إذا كان المنتج يطابق نطاق السعر المحدد
-      const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
-
+        : true; // إذا كانت الفئة غير محددة، تتجاهل الفلتر
+  
+        const matchesBrand = this.selectedBrand
+        ? product.translations?.[this.isArabic ? 1 : 0]?.brandName === this.selectedBrand // التأكد من استخدام الفهرس الصحيح
+        : true; // إذا كان البراند غير محدد، تتجاهل الفلتر
+  
+      const matchesPrice = product.price >= minPrice && product.price <= maxPrice; // التحقق من نطاق السعر
+  
       return matchesCategory && matchesBrand && matchesPrice;
     });
   }
+  
+  
 
+  
   // Modify onCategoryChange, onBrandChange, and onPriceChange to call applyFilters instead of setting filteredProducts independently.
 
   // onCategoryChange(categoryName: string | null): void {
@@ -189,11 +187,11 @@ isPriceOpen: boolean = false;
 
   onCategoryChange(categoryName: string | null): void {
     this.selectedCategory = categoryName;
-
+  
     const selectedCategory = this.categories.find(
-      category => category.translations?.[0]?.categoryName === categoryName
+      category => category.translations?.[this.isArabic ? 1 : 0]?.categoryName === categoryName // استخدام الفهرس الصحيح للترجمة
     );
-
+  
     if (selectedCategory) {
       this.service.getProductsByCategoryId(selectedCategory.id).subscribe(
         (products: ProductB[]) => {
@@ -211,6 +209,7 @@ isPriceOpen: boolean = false;
       );
     }
   }
+  
 
   //========== order related functions ============
   @ViewChild('confirmRemoveModal') confirmRemoveModal: any;

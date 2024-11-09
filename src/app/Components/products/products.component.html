@@ -22,9 +22,10 @@
             {{ 'slider.brands' | translate }} <span class="toggle-icon">{{ brandFilterOpen ? '-' : '+' }}</span>
           </h5>
           <div class="filter-content" [ngClass]="{ 'd-none': !brandFilterOpen }">
-            <app-select-checkbox class="select-checkbox " title="Brand" [dataEntity]="brands"
-              [selectEntity]="selectedBrand" (filterValue)="onBrandChange($event)">
-            </app-select-checkbox>
+            <app-select-checkbox class="select-checkbox" title="Brand" [dataEntity]="brands"
+            [selectEntity]="selectedBrand" (filterValue)="onBrandChange($event)">
+          </app-select-checkbox>
+          
           </div>
         </div>
 
@@ -51,6 +52,9 @@
     <div class="col-md-9 shadow-sm rounded">
       <div class="row">
         <div *ngFor="let product of filteredProducts | paginate: { itemsPerPage: ItemsPerPage, currentPage: p }" class="col-md-4 mb-4">
+          <div *ngIf="product">
+              <p>Price: {{ product?.price }}</p>
+      </div>
           <app-product-list [data]="product" (item)="addToCart($event)"></app-product-list>
         </div>
       </div>

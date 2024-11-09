@@ -54,5 +54,6 @@ export class AllproductsService {
     return this.http.get<ProductB[]>(`${this.thisapi}/product/GetPaginated`, { params });
   }
   
+  
  
 }

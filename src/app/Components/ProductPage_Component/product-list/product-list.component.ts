@@ -43,6 +43,7 @@ export class ProductListComponent {
 
   ngOnChanges() {
     console.log('Product data:', this.data);
+    console.log('Price:', this.data?.price); // تأكد من أن السعر موجود هنا
   }
 
   openProductDetails(data: any) {
@@ -96,6 +97,9 @@ export class ProductListComponent {
   //====================================
 
   getFormattedPrice(price: number): string {
+    if (price == null || price === undefined || isNaN(price)) {
+      return this.isArabic ? 'السعر غير متاح' : 'Price not available';
+    }
     return this.isArabic ? `${price} ج.م` : `EGP ${price}`;
   }
 
