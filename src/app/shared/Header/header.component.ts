@@ -75,17 +75,17 @@ export class HeaderComponent implements AfterViewInit , OnInit{
   }
   ngAfterViewInit(): void {
     throw new Error('Method not implemented.');
-    
+
   }
   ngOnInit(): void {
     this.getallcategory(); // جلب الفئات كما في الكود السابق
-  
+
     this.auth.isLoggedInStatus$.subscribe((status) => {
       this.isUserLoggedIn = status;
       this.userName = this.auth.getUserNameFromToken() || '';
     });
   }
-  
+
 
   openMyAccount() {
     this.router.navigate(['/my-account']); // التوجه لصفحة "My Account"
@@ -168,28 +168,31 @@ onSubCategorySelect(subCategoryId: number) {
   onSignOut() {
     this.auth.signOut();
     this.isUserLoggedIn = false;
-    this.router.navigate(['/']);  
+    this.router.navigate(['/']);
     this.cdr.detectChanges(); // تحديث العرض بعد تسجيل الخروج
   }
- 
 
-onSearch(event: Event) {
-    event.preventDefault(); // منع إعادة تحميل الصفحة
+
+  onSearch(event: Event) {
+    event.preventDefault();
     if (this.searchQuery) {
       this.catservice.getProductsByCategoryName(this.searchQuery).subscribe(
         (res) => {
           if (res && res.length) {
-            // تصفية المنتجات بحيث تتطابق فقط مع اسم الكاتيجوري المطلوب
+            // Filter products to match only the required category name
             const filteredProducts = res.filter((product: any) =>
               product.category.translations.some(
-                (translation: any) => translation.categoryName.toLowerCase() === this.searchQuery.toLowerCase()
+                (translation: any) =>
+                  translation.categoryName.toLowerCase() === this.searchQuery.toLowerCase()
               )
             );
 
             if (filteredProducts.length) {
-              // التنقل إلى صفحة نتائج البحث وتمرير المنتجات كـ state
-              this.router.navigate(['/searchresult'], {
-                state: { products: filteredProducts }
+              // Navigate to the search results page with updated state without reloading
+              this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+                this.router.navigate(['/searchresult'], {
+                  state: { products: filteredProducts },
+                });
               });
             } else {
               console.log("No matching products found for this category");
@@ -198,7 +201,7 @@ onSearch(event: Event) {
             console.log("No products found for this category");
           }
         },
-        error => {
+        (error) => {
           console.error("Error fetching products:", error);
         }
       );

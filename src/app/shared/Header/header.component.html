@@ -68,7 +68,7 @@
         <form (ngSubmit)="onSearch($event)" class="d-flex mx-auto w-50">
           <input [(ngModel)]="searchQuery" name="searchQuery" class="form-control me-2 mx-2" type="search"
             [placeholder]="'nav.search by category' | translate" aria-label="Search">
-          <button title="." class="btn btn-outline-secondary" type="submit">
+          <button title="." class="btn btn-outline-secondary" type="submit" (click)="onSearch($event)">
             <i class="fas fa-search"></i>
           </button>
         </form>
