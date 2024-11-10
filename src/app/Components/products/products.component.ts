@@ -25,7 +25,7 @@ import { ViewChild } from '@angular/core';
 })
 
 export class ProductsComponent implements OnInit {
-  userId: string = "e2366e30-de44-4708-af0d-c14f50335ba5";
+  // userId: string = "e2366e30-de44-4708-af0d-c14f50335ba5";
 
   isArabic!: boolean;
   products: ProductB[] = [];
@@ -218,11 +218,12 @@ isPriceOpen: boolean = false;
 
   addToCart(event: any) {
     const userId = this.autherService.getUserIdNourhan();
+    // const userId ='62b6f82f-2bbe-4787-b121-6e07ea928413';
     if(userId != null){
       console.log(event);
       this.productName = event.name;
       this.ProductImgUrl = event.img;
-      this.orderService.addToCart(event.id, this.userId).subscribe(
+      this.orderService.addToCart(event.id,userId).subscribe(
         () => {
           this.openRemoveModal();
           console.log('Product added to cart successfully!');

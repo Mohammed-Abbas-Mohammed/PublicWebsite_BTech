@@ -54,6 +54,7 @@ export class SignUpComponent {
         PostalCode: '12345'
       };
 
+      
       this.authService.register(userData).subscribe(
         response => {
           console.log('Registration successful', response);
@@ -65,10 +66,13 @@ export class SignUpComponent {
       );
     }
   }
+
   useLanguage() {
     this.translate.ChangeLanguage();
   }
+
   signin(){
     this.router.navigate(['sign-in']);
   }
+  
 }

@@ -1,7 +1,7 @@
 <div [dir]="isArabic ? 'rtl' : 'ltr'" class="container my-5 shadow-sm">
   <div class="row p-4">
     <!-- Left Column: Product Image -->
-    <div id="carouselExample" class="carousel slide col-md-6" data-bs-ride="carousel" data-bs-interval="3000">
+    <div id="carouselExample" class="carousel slide col-md-6" data-bs-ride="carousel" data-bs-interval="2000">
       <div class="carousel-inner">
         <div *ngFor="let image of product.images; let i = index" class="carousel-item" [class.active]="i === 0">
           <img [src]="image.url" [alt]="product.translations[0]?.name" class="d-block img-fluid" />
