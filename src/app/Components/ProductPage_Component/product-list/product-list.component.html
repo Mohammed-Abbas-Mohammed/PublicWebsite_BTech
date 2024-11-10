@@ -1,18 +1,14 @@
 <div class="container my-5">
-  <!-- <div [dir]="isArabic ? 'rtl' : 'ltr'" class="card" (click)="openProductDetails(data)"> -->
+  <!-- <div [dir]="isArabic ? 'rtl' : 'ltr'" class="card" (click)="openProductDetails(data)">  -->
   <div [dir]="isArabic ? 'rtl' : 'ltr'" class="card" (click)="openProductDetails(data)">
     <img
       [src]="(data.product?.images && data.product.images.length > 0) ? data.product.images[0].url : (data.images?.[0]?.url || 'default-image-url.png')"
       class="card-img-top"
       [alt]="data.product?.translations?.[isArabic ? 1 : 0]?.name || data.translations?.[isArabic ? 1 : 0]?.name || 'Product Image'" />
     <div class="card-body text-center">
-      <h5 class="card-title fw-bold fs-5">
-        {{ data.product?.translations?.[isArabic ? 1 : 0]?.name || data.translations?.[isArabic ? 1 : 0]?.name ||
-        'Product Name' }}
-      </h5>
-      <p class="card-text price">
-        {{ getFormattedPrice(data.price) }}
-      </p>
+      <!-- <div class="card-body"> -->
+        <h5 class="card-title">{{ data.product?.translations?.[isArabic ? 1 : 0]?.name || data.translations?.[isArabic ? 1 : 0]?.name || 'Product Name' }}</h5>
+        <p class="card-text">{{ getFormattedPrice(data.product?.price || data.price) }}</p>
       <hr />
       <button class="btn btn-wrning w-75" (click)="add(data)">
         {{ "product.add to cart" | translate }}
@@ -20,6 +16,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- pop-up modal for add to cart if the user not logged in -->
 
