@@ -22,6 +22,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css'
 })
+
 // export class PaymentComponent {
 //   totalCost:number = 0;
 //   Quantity:number = 0;
@@ -43,10 +44,13 @@ export class PaymentComponent implements OnInit {
   orderId:number|null = 0;
 
 
-  constructor(private orderService: OrderService, private router:Router, private modalService: NgbModal,
-    private paypalService: PaypalPaymentService, private authService: AuthService, private route: ActivatedRoute){}
-
-
+  constructor(
+    private orderService: OrderService,
+     private router:Router, 
+     private modalService: NgbModal,
+    private paypalService: PaypalPaymentService,
+     private authService: AuthService,
+      private route: ActivatedRoute){}
 
   cities = [
     "Cairo",
@@ -209,7 +213,8 @@ export class PaymentComponent implements OnInit {
   }
   //===========fetch order items=============
   loadCartItems(): void {
-    const userId = this.authService.getUserIdNourhan();
+        const userId = this.authService.getUserIdNourhan();
+    // const userId = "62b6f82f-2bbe-4787-b121-6e07ea92841";
     if(userId){
       this.orderService.viewCart(userId).subscribe(
         (data) => {
