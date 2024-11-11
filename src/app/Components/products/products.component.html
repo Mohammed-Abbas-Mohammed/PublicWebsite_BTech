@@ -1,13 +1,17 @@
 <div [dir]="isArabic ? 'rtl' : 'ltr'" class="container my-4">
   <div class="row">
     <div class="col-md-3">
-      <button class="btn btn-link clear-all" (click)="clearFilter()">{{ 'slider.clear all' | translate }}</button>
+      <button class="btn btn-link clear-all" (click)="clearFilter()">
+        {{ "slider.clear all" | translate }}
+      </button>
       <div class="sidebar">
-
         <!-- Categories Filter Section -->
         <div class="filter-section">
           <h5 class="filter-title fs-5" (click)="toggleCategoryFilter()">
-            {{ 'slider.categories' | translate }} <span class="toggle-icon">{{ categoryFilterOpen ? '-' : '+' }}</span>
+            {{ "slider.categories" | translate }}
+            <span class="toggle-icon">{{
+              categoryFilterOpen ? "-" : "+"
+              }}</span>
           </h5>
           <div class="filter-content" [ngClass]="{ 'd-none': !categoryFilterOpen }">
             <app-select-checkbox class="select-checkbox" title="Categories" [dataEntity]="categoryNames"
@@ -19,10 +23,11 @@
         <!-- Brands Filter Section -->
         <div class="filter-section">
           <h5 class="filter-title fs-5" (click)="toggleBrandFilter()">
-            {{ 'slider.brands' | translate }} <span class="toggle-icon">{{ brandFilterOpen ? '-' : '+' }}</span>
+            {{ "slider.brands" | translate }}
+            <span class="toggle-icon">{{ brandFilterOpen ? "-" : "+" }}</span>
           </h5>
           <div class="filter-content" [ngClass]="{ 'd-none': !brandFilterOpen }">
-            <app-select-checkbox class="select-checkbox " title="Brand" [dataEntity]="brands"
+            <app-select-checkbox class="select-checkbox" title="Brand" [dataEntity]="brands"
               [selectEntity]="selectedBrand" (filterValue)="onBrandChange($event)">
             </app-select-checkbox>
           </div>
@@ -31,63 +36,67 @@
         <!-- Price Filter Section -->
         <div class="filter-section">
           <h5 class="filter-title fs-5" (click)="togglePriceFilter()">
-            {{ 'slider.price' | translate }} <span class="toggle-icon">{{ priceFilterOpen ? '-' : '+' }}</span>
+            {{ "slider.price" | translate }}
+            <span class="toggle-icon">{{ priceFilterOpen ? "-" : "+" }}</span>
           </h5>
           <div class="filter-content" [ngClass]="{ 'd-none': !priceFilterOpen }">
-            <app-select-checkbox class="select-checkbox" title="Price" [dataEntity]="priceNames"
-              [selectEntity]="selectedPrice" (filterValue)="onPriceChange($event)">
-            </app-select-checkbox>
+            <div class="d-flex align-items-center">
+              <input type="number" [(ngModel)]="minPrice" class="form-control me-2"
+                placeholder="{{ isArabic ? 'من' : 'From' }}" />
+              <span>-</span>
+              <input type="number" [(ngModel)]="maxPrice" class="form-control ms-2"
+                placeholder="{{ isArabic ? 'إلى' : 'To' }}" />
+              <button (click)="applyPriceFilter()" class="btn btn-dark ms-3">
+                OK
+              </button>
+            </div>
           </div>
         </div>
-
-
-
       </div>
-
-
     </div>
 
     <!-- Products List -->
     <div class="col-md-9 shadow-sm rounded">
       <div class="row">
-        <div *ngFor="let product of filteredProducts | paginate: { itemsPerPage: ItemsPerPage, currentPage: p }" class="col-md-4 mb-4">
+        <div *ngFor="
+            let product of filteredProducts
+              | paginate : { itemsPerPage: ItemsPerPage, currentPage: p }
+          " class="col-md-4 mb-4">
           <app-product-list [data]="product" (item)="addToCart($event)"></app-product-list>
         </div>
       </div>
     </div>
-    <div class="mt-8 py-5 d-flex justify-content-center ">
-         <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <div class="mt-8 py-5 d-flex justify-content-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
 </div>
 
-
 <!-- pop-up modal for add to cart -->
 
-
 <ng-template #confirmRemoveModal let-modal>
-  <div class="modal-body" style="font-weight: bold;">
+  <div class="modal-body" style="font-weight: bold">
     <div class="row">
       <div class="col-md-2">
-        <img src="{{ProductImgUrl}}" alt="" style="width: 100%;
-        max-width: 50px;
-        height: auto;">
+        <img src="{{ ProductImgUrl }}" alt="" style="width: 100%; max-width: 50px; height: auto" />
       </div>
       <div class="col-md-10">
-        <p style="font-weight: bold;">
-          <i class="fa-solid fa-circle-check" style="color: green;"></i>
-          &nbsp;
-          This item has been added to cart
+        <p style="font-weight: bold">
+          <i class="fa-solid fa-circle-check" style="color: green"></i>
+          &nbsp; This item has been added to cart
         </p>
         <p>
-          {{productName}}
+          {{ productName }}
         </p>
       </div>
     </div>
   </div>
   <div class="modal-footer text-center">
-    <button type="button" class="btn btn-dark" (click)="modal.close('cancel')">Go to cart</button>
-    <button type="button" class="btn btn-light" (click)="modal.close('Remove')">Explore products</button>
+    <button type="button" class="btn btn-dark" (click)="modal.close('cancel')">
+      Go to cart
+    </button>
+    <button type="button" class="btn btn-light" (click)="modal.close('Remove')">
+      Explore products
+    </button>
   </div>
 </ng-template>
-
