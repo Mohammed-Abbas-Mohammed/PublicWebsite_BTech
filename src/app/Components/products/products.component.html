@@ -41,10 +41,10 @@
           </h5>
           <div class="filter-content" [ngClass]="{ 'd-none': !priceFilterOpen }">
             <div class="d-flex align-items-center">
-              <input type="number" [(ngModel)]="minPrice" class="form-control me-2"
+              <input type="number" [(ngModel)]="minPrice" class="form-control price-input me-2"
                 placeholder="{{ isArabic ? 'من' : 'From' }}" />
               <span>-</span>
-              <input type="number" [(ngModel)]="maxPrice" class="form-control ms-2"
+              <input type="number" [(ngModel)]="maxPrice" class="form-control price-input ms-2"
                 placeholder="{{ isArabic ? 'إلى' : 'To' }}" />
               <button (click)="applyPriceFilter()" class="btn btn-dark ms-3">
                 OK
