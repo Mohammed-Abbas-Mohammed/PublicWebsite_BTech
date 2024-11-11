@@ -1,27 +1,26 @@
-
 <div [dir]="isArabic ? 'rtl' : 'ltr'" class="container my-4 text-center" style="width: 80%;">
 
   <!-- <ng-container  class="text-center" > -->
-    <div *ngIf="cartItems.length === 0;"  class="row text-center">
-      <div class="text-center">
+  <div *ngIf="cartItems.length === 0;" class="row text-center">
+    <div class="text-center">
 
-        <div style="margin-bottom: 15px;">
-          <img src="../../../assets/images/empty-cart.05d8cea1.gif" alt="Description of the GIF"
-                  style="width: 300px; height: auto;">
-        </div>
-        <p>
-          <span style="font-weight: bold; font-size: 20px;">{{'cart.cart empty message'|translate }}</span>
-          <br><span class="empty-cart">{{'cart.welcome message'|translate }}
-          <br><span class="text-center">{{'cart.offers'|translate}}</span></span>
-        </p>
-
-        <button (click)="navigateToHome()" class="shop-button"
-          style="width: 35%; border-radius: 10px; padding: 15px 0; border: 1px solid rgb(191, 190, 190); background-color: white;">
-          <span style="font-weight: bold; font-size: 16px;">{{'cart.shop now button'|translate}}</span>
-        </button>
-
+      <div style="margin-bottom: 15px;">
+        <img src="../../../assets/images/empty-cart.05d8cea1.gif" alt="Description of the GIF"
+          style="width: 300px; height: auto;">
       </div>
+      <p>
+        <span style="font-weight: bold; font-size: 20px;">{{'cart.cart empty message'|translate }}</span>
+        <br><span class="empty-cart">{{'cart.welcome message'|translate }}
+          <br><span class="text-center">{{'cart.offers'|translate}}</span></span>
+      </p>
+
+      <button (click)="navigateToHome()" class="shop-button"
+        style="width: 35%; border-radius: 10px; padding: 15px 0; border: 1px solid rgb(191, 190, 190); background-color: white;">
+        <span style="font-weight: bold; font-size: 16px;">{{'cart.shop now button'|translate}}</span>
+      </button>
+
     </div>
+  </div>
   <!-- </ng-container> -->
 
   <div class="row" *ngIf="cartItems.length > 0">
@@ -36,14 +35,14 @@
           </header>
 
           <div class="cart-item" *ngFor="let item of cartItems">
-            <img [src]="item.imageUrl" alt="{{ item.name }}" class="item-image" />
+            <img [src]="item.imageUrl" alt="{{ item.productName }}" class="item-image" />
             <div class="item-details col-md-9 text-start">
               <p class="item-name">{{ item.productName }}</p>
               <!-- <p class="item-price">{{ item.quantity }}</p> -->
               <h3 class="item-price" style="font-weight: bold;">EGP {{ item.productPrice }}</h3>
             </div>
 
-            <div class="col-md-3 text-end" >
+            <div class="col-md-3 text-end">
               <div class="changeQuantity">
                 <select [(ngModel)]="item.quantity" (change)="updateQuantity(item.id, item.quantity)">
                   <option *ngFor="let number of numbers" [value]="number">{{ number }}</option>
@@ -70,7 +69,7 @@
           <div style="font-weight: bold;" class="col-md-6 text-start">{{'cart.Subtotal'|translate}}</div>
           <div style="font-weight: bold;" class="col-md-6 text-end">{{ totalCost.toFixed(2) }} EGP</div>
         </div>
-        <button (click)="goToCheckout()"  class="checkout-btn">{{'cart.checkout'|translate}}</button>
+        <button (click)="goToCheckout()" class="checkout-btn">{{'cart.checkout'|translate}}</button>
       </div>
 
       <div class="text-center smallCart2" style="margin-top: 20px;">
@@ -119,8 +118,10 @@
     {{'cart.Remove Product'|translate}}
   </div>
   <div class="modal-footer text-center">
-    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel')">{{'cart.Remove Product'|translate}}</button>
-    <button type="button" class="btn btn-outline-danger" (click)="modal.close('Remove')">{{'cart.remove'|translate}}</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel')">{{'cart.Remove
+      Product'|translate}}</button>
+    <button type="button" class="btn btn-outline-danger"
+      (click)="modal.close('Remove')">{{'cart.remove'|translate}}</button>
   </div>
 </ng-template>
 
