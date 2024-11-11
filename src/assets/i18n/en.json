@@ -115,11 +115,33 @@
     "app benefits": "Enjoy benefits & features using the B.TECH app",
     "greeting": "Hi,"
   },
-  "searchresult":{
+  "searchresult": {
     "search results": "Search Results",
     "new": "New",
     "brand": "Brand",
     "view details": "View Details"
+  },
+  "payment": {
+    "separateOrders": "Products from different warehouses will be delivered as separate orders",
+    "deliveryDetails": "Delivery details",
+    "deliveryArea": "Delivery area",
+    "enterAddress": "Enter detailed Address",
+    "continue": "Continue",
+    "paymentInfo": "Payment info",
+    "selectPaymentMethod": "Select Payment Method:",
+    "cashOnDelivery": "Cash on delivery",
+    "paypal": "PayPal",
+    "orderSummary": "Order summary",
+    "order": "Order",
+    "quantity": "Quantity:",
+    "items": "items",
+    "itemValue": "Item value:",
+    "deliveryFee": "Delivery fee:",
+    "total": "Total:",
+    "havePromoCode": "I have a promo code",
+    "apply": "Apply",
+    "placeOrder": "Place Order",
+    "city": "The city"
   },
   "footer": {
     "call_support": "Call support",
