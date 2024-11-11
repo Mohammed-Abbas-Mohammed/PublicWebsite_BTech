@@ -256,4 +256,8 @@ export class PaymentComponent implements OnInit {
       );
     }
   }
+
+  getFormattedPrice(price: number): string {
+    return this.isArabic ? `${price} ج.م` : `EGP ${price}`;
+  }
 }
