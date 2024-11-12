@@ -1,0 +1,38 @@
+<div
+  data-bs-spy="scroll"
+  data-bs-root-margin="0px 0px -40%"
+  data-bs-smooth-scroll="true"
+  class="scrollspy-example bg-body-tertiary p-3 rounded-2"
+  tabindex="0"
+>
+  <div *ngIf="loading" class="text-center mt-4">
+    <p>Loading orders...</p>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger mt-4">
+    {{ error }}
+  </div>
+
+  <div *ngIf="orders && orders.length > 0" class="scroll-container mt-4">
+    <div *ngFor="let order of orders" class="card order-card">
+      <div class="card-header">
+        <h5>Order ID: {{ order.id }}</h5>
+        <p>Date: {{ order.orderDate | date: 'short' }}</p>
+      </div>
+      <div class="card-body">
+        <p><strong>Total Price:</strong> {{ order.totalPrice }} USD</p>
+        <p><strong>Status:</strong> {{ getStatus(order.currentStatus) }}</p>
+        <h6>Items:</h6>
+        <ul class="list-group">
+          <li *ngFor="let item of order.orderItems" class="list-group-item">
+            <strong>{{ item.productName }}</strong> - Quantity: {{ item.quantity }}, Price: {{ item.price }} USD
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="orders && orders.length === 0" class="text-center mt-4">
+    <p>No orders found.</p>
+  </div>
+</div>

@@ -35,7 +35,7 @@
             product.translations[isArabic ? 1 : 0]?.description }}
           </p>
         </div>
-        <button class="btn btn-primary" >
+        <button class="btn btn-primary" (click)="addToCart(product)" >
           {{ "product.add to cart" | translate }}
         </button>
       </div>
@@ -60,3 +60,39 @@
     </table>
   </div>
 </div>
+
+
+<ng-template #confirmRemoveModal let-modal>
+  <div class="modal-header justify-content-center" style="font-weight: bold; background-color: rgb(244, 220, 175)">
+    <h5 class="modal-title text-center">
+      {{ "alert.login prompt" | translate }}
+    </h5>
+  </div>
+  <div class="modal-footer text-center">
+    <button type="button" class="btn btn-warning" (click)="modal.close('Remove')">
+      {{ "alert.continue exploring" | translate }}
+    </button>
+    <button type="button" class="btn btn-dark" (click)="modal.close('cancel')">
+      {{ "go to cart" | translate }}
+    </button>
+  </div>
+</ng-template> 
+
+
+<!-- pop-up modal for add to cart if the user not logged in -->
+
+<!-- <ng-template #confirmRemoveModal let-modal>
+  <div class="modal-header justify-content-center" style="font-weight: bold; background-color: rgb(244, 220, 175)">
+    <h5 class="modal-title text-center">
+      {{ "alert.login prompt" | translate }}
+    </h5>
+  </div>
+  <div class="modal-footer text-center">
+    <button type="button" class="btn btn-warning" (click)="modal.close('Remove')">
+      {{ "alert.continue exploring" | translate }}
+    </button>
+    <button type="button" class="btn btn-dark" (click)="modal.close('cancel')">
+      {{ "alert.go to login" | translate }}
+    </button>
+  </div>
+</ng-template> -->

@@ -181,7 +181,7 @@ export class PaymentComponent implements OnInit {
     }
   }
 
-  //************************************************** */
+  //***************************************************/
 
   chashPayment(): void {
     const ele = document.getElementById('continuePayment') as HTMLButtonElement;

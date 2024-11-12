@@ -14,6 +14,7 @@ import { ProductsByBrandComponent } from './Components/products-by-brand/product
 import { ProductsByCategoryComponent } from './Components/products-by-category/products-by-category.component';
 import { SearchresultComponent } from './Components/searchresult/searchresult.component';
 import { MyAccountComponent } from './Components/my-account/my-account.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 export const routes: Routes = [
 
@@ -33,7 +34,7 @@ export const routes: Routes = [
     { path: 'products-by-brand/:brandName', component: ProductsByBrandComponent },
     {path: 'product-by-category/:categoryId', component:ProductsByCategoryComponent},
     { path: 'searchresult', component: SearchresultComponent },
-
+    {path: 'my-orders', component : MyOrdersComponent},
 
     {path:'remember-by-phoone',component:RemeberByPhooneComponent,title:'remember-me', data: { hideHeaderFooter: true } },
 

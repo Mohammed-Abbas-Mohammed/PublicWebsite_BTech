@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AllproductsService } from '../../service/product/allproducts.service';
 import { CommonModule } from '@angular/common';
@@ -8,6 +8,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LocalizationService } from '../../service/localiztionService/localization.service';
 import { AuthService } from '../../service/Identity/auth.service';
 import { OrderService } from '../../service/Order/order.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-details',
@@ -23,7 +24,10 @@ export class DetailsComponent implements OnInit {
   productspecification: ProductB[] = [];
   productName:string='';
   ProductImgUrl:string='';
-  modalService: any;
+  
+  @Input() data: any = {};
+  @Output() item = new EventEmitter();
+  
   constructor(
     private route: ActivatedRoute,
     private router :Router,
@@ -31,7 +35,8 @@ export class DetailsComponent implements OnInit {
     private recentProductsService: RecentProductsService, // إضافة خدمة المنتجات المشاهدة
     private translate: LocalizationService,
     private autherService:AuthService,
-    private orderService :OrderService
+    private orderService :OrderService,
+    private modalService: NgbModal
   ) {
     this.translate.IsArabic.subscribe((ar) => (this.isArabic = ar));
   }
@@ -74,6 +79,82 @@ export class DetailsComponent implements OnInit {
   getFormattedPrice(price: number): string {
     return this.isArabic ? `${price} ج.م` : `EGP ${price}`;
   }
+
+ //=========== order related functions ==========
+//  @ViewChild('confirmRemoveModal') confirmRemoveModal: any;
+
+ @ViewChild('confirmRemoveModal') confirmRemoveModal: any;
+
+ openRemoveModal() {
+   this.modalService.open(this.confirmRemoveModal).result.then(
+     (result: any) => {
+       if (result === 'Remove') {
+         this.goToHome();
+       } else {
+         this.goToCart();
+       }
+     },
+     (dismiss: any) => {
+       console.log('Modal dismissed:', dismiss);
+     }
+   );
+ }
+ 
+
+//  add(data:any): void {
+//    const userId = this.autherService.getUserIdNourhan();
+//    if(userId != null){
+//      var productInfo = {
+//        id: data.id,
+//        img: (data.product?.images && data.product.images.length > 0) ? data.product.images[0].url : (data.images?.[0]?.url || 'default-image-url.png'),
+//        name: data.product?.translations?.[0]?.name || data.translations?.[0]?.name || 'Product Name' 
+//      }
+//      this.item.emit(productInfo);
+//    }
+//    else{
+//      this.openRemoveModal();
+//    }
+   
+//  }
+
+ addToCart(event: any) {
+  const userId = this.autherService.getUserIdNourhan();
+  if (userId != null) {
+    this.productName = event.translations[0]?.name || 'Unknown Product';
+    this.ProductImgUrl = event.images?.[0]?.url || 'default-image-url.png';
+
+    this.orderService.addToCart(event.id, userId).subscribe(
+      () => {
+        this.openRemoveModal();
+        console.log('Product added to cart successfully!');
+      },
+      (error) => {
+        console.error('Could not add product to cart:', error);
+      }
+    );
+  } else {
+    this.openRemoveModal();
+  }
+}
+
+
+//  openRemoveModal() {
+//    this.modalService.open(this.confirmRemoveModal).result.then((result:any) => {
+//      if (result === 'Remove') {
+//        this.goToHome();
+//      }
+//      else this.goToCart();
+//    });
+//  }
+
+ goToHome():void{
+   this.router.navigate(['/']); 
+ }
+
+ goToCart():void{
+   this.router.navigate(['/cart']); 
+ }
+
 
   // addToCart(event: any) {
   //   const userId = this.autherService.getUserIdNourhan();

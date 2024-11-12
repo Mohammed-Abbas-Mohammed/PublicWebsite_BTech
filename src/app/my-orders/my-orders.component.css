@@ -1,0 +1,11 @@
+.scroll-container {
+    max-height: 400px; /* Set the max height for the scrollable area */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  
+  /* Individual order card */
+  .order-card {
+    max-height: 100%; /* Ensure the card fits within the scroll area */
+    margin-bottom: 10px; /* Add some spacing between cards */
+    border: 1px solid #ddd; /* Optional: Add a border for better visibility */
+  }

@@ -35,4 +35,11 @@ export class OrderService {
     return this.http.delete(req);
   }
 
+    getOrdersByUserId(userId: string): Observable<any> {
+    if (!userId) {
+      throw new Error('User ID cannot be null or empty.');
+    }
+    return this.http.get(`${this.apiUrl}/user/${userId}`);
+  }
+
 }

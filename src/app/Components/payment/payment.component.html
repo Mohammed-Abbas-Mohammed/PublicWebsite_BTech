@@ -133,7 +133,7 @@
           <div class="row">
             <img [src]="order.imageUrl" alt="Product Image" class="col-md-2">
             <p class="col-md-6 text-start">{{ order.productName }}</p>
-            <p class="col-md-4 text-end">{{ getFormattedPrice(order.totalPrice.toFixed(2))}}</p>
+            <p class="col-md-4 text-end">{{ getFormattedPrice(order.productPrice.toFixed(2))}}</p>
           </div>
           <hr>
           <div class="row" style="margin-top: 15px;">
@@ -150,7 +150,7 @@
           </div>
           <div class="row" style="margin-top: 15px;">
             <div class="col-md-6 text-start">{{'payment.total'|translate}}</div>
-            <div class="col-md-6 text-end">{{ getFormattedPrice((order.totalPrice + fee).toFixed(2))}}</div>
+            <div class="col-md-6 text-end">{{ getFormattedPrice((order.productPrice + fee).toFixed(2))}}</div>
           </div>
           <br>
         </div>
