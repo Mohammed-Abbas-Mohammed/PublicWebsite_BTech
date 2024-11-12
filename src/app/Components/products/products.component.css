@@ -62,4 +62,16 @@
 }
 
 
+.price-input {
+ max-width:  80px; /* Increase width as needed */
+}
 
+.price-input::-webkit-outer-spin-button,
+.price-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.price-input {
+  -moz-appearance: textfield;
+}

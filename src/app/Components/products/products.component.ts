@@ -15,17 +15,21 @@ import { AuthService } from '../../service/Identity/auth.service';
 import { OrderService } from '../../service/Order/order.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [ProductListComponent, SelectCheckboxComponent,CommonModule,TranslateModule,NgxPaginationModule],
+  imports: [ProductListComponent, SelectCheckboxComponent,CommonModule,TranslateModule,NgxPaginationModule,FormsModule],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
 
 export class ProductsComponent implements OnInit {
   // userId: string = "e2366e30-de44-4708-af0d-c14f50335ba5";
+  // Other properties
+  minPrice: number | null = null;
+  maxPrice: number | null = null;
 
   isArabic!: boolean;
   products: ProductB[] = [];
@@ -264,5 +268,14 @@ isPriceOpen: boolean = false;
 
   togglePriceFilter() {
     this.priceFilterOpen = !this.priceFilterOpen;
+  }
+
+  applyPriceFilter(): void {
+    const min = this.minPrice ?? 0;
+    const max = this.maxPrice ?? Infinity;
+
+    this.filteredProducts = this.products.filter(product => {
+      return product.price >= min && product.price <= max;
+    });
   }
 }

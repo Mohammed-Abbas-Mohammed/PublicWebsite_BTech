@@ -121,6 +121,28 @@
     "brand": "العلامة التجارية",
     "view details": "عرض التفاصيل"
   },
+  "payment": {
+    "separateOrders": "سيتم تسليم المنتجات من مستودعات مختلفة كطلبات منفصلة",
+    "deliveryDetails": "تفاصيل التوصيل",
+    "deliveryArea": "منطقة التوصيل",
+    "enterAddress": "أدخل العنوان بالتفصيل",
+    "continue": "متابعة",
+    "paymentInfo": "معلومات الدفع",
+    "selectPaymentMethod": "اختر طريقة الدفع:",
+    "cashOnDelivery": "الدفع عند الاستلام",
+    "paypal": "باي بال",
+    "orderSummary": "ملخص الطلب",
+    "order": "طلب",
+    "quantity": "الكمية:",
+    "items": "العناصر",
+    "itemValue": "قيمة العنصر:",
+    "deliveryFee": "رسوم التوصيل:",
+    "total": "الإجمالي:",
+    "havePromoCode": "لدي رمز ترويجي",
+    "apply": "تطبيق",
+    "placeOrder": "إتمام الطلب",
+    "city": "المدينة"
+  },
   "footer": {
     "call_support": "اتصل بالدعم",
     "support_number": "19966",
