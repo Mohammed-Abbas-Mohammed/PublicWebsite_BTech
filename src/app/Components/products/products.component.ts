@@ -222,11 +222,11 @@ isPriceOpen: boolean = false;
 
   addToCart(event: any) {
     const userId = this.autherService.getUserIdNourhan();
-    // const userId ='62b6f82f-2bbe-4787-b121-6e07ea928413';
     if(userId != null){
       console.log(event);
       this.productName = event.name;
       this.ProductImgUrl = event.img;
+      console.log("productImg :" ,this.ProductImgUrl)
       this.orderService.addToCart(event.id,userId).subscribe(
         () => {
           this.openRemoveModal();

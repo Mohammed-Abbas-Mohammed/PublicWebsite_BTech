@@ -89,7 +89,6 @@ export class CartComponent implements OnInit {
 
   // Load items in the cart based on userId
   loadCartItems(): void {
-    // const userId = 'e2366e30-de44-4708-af0d-c14f50335ba5';
     if(this.userId){
       this.orderService.viewCart(this.userId).subscribe(
         (data) => {

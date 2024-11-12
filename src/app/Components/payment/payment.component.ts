@@ -239,8 +239,7 @@ export class PaymentComponent implements OnInit {
   //===========fetch order items=============
   loadCartItems(): void {
     const userId = this.authService.getUserIdNourhan();
-    // const userId = "62b6f82f-2bbe-4787-b121-6e07ea92841";
-    if (userId) {
+    if(userId){
       this.orderService.viewCart(userId).subscribe(
         (data) => {
           console.log(data);

@@ -35,7 +35,7 @@
           </header>
 
           <div class="cart-item" *ngFor="let item of cartItems">
-            <img [src]="item.imageUrl" alt="{{ item.productName }}" class="item-image" />
+            <img [src]="item.ProductImgUrl" alt="{{ item.name }}" class="item-image" />
             <div class="item-details col-md-9 text-start">
               <p class="item-name">{{ item.productName }}</p>
               <!-- <p class="item-price">{{ item.quantity }}</p> -->
@@ -44,7 +44,7 @@
 
             <div class="col-md-3 text-end">
               <div class="changeQuantity">
-                <select [(ngModel)]="item.quantity" (change)="updateQuantity(item.id, item.quantity)">
+                <select title="." [(ngModel)]="item.quantity" (change)="updateQuantity(item.id, item.quantity)">
                   <option *ngFor="let number of numbers" [value]="number">{{ number }}</option>
                 </select>
               </div>
