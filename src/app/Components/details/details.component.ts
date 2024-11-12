@@ -6,6 +6,8 @@ import { RecentProductsService } from '../../service/recent-products/recent-prod
 import { ProductB } from '../../models/product-b';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LocalizationService } from '../../service/localiztionService/localization.service';
+import { AuthService } from '../../service/Identity/auth.service';
+import { OrderService } from '../../service/Order/order.service';
 
 @Component({
   selector: 'app-details',
@@ -19,11 +21,17 @@ export class DetailsComponent implements OnInit {
   product: any;
   productTranslation: any;
   productspecification: ProductB[] = [];
+  productName:string='';
+  ProductImgUrl:string='';
+  modalService: any;
   constructor(
     private route: ActivatedRoute,
+    private router :Router,
     private allProductsService: AllproductsService,
     private recentProductsService: RecentProductsService, // إضافة خدمة المنتجات المشاهدة
-    private translate: LocalizationService
+    private translate: LocalizationService,
+    private autherService:AuthService,
+    private orderService :OrderService
   ) {
     this.translate.IsArabic.subscribe((ar) => (this.isArabic = ar));
   }
@@ -66,6 +74,42 @@ export class DetailsComponent implements OnInit {
   getFormattedPrice(price: number): string {
     return this.isArabic ? `${price} ج.م` : `EGP ${price}`;
   }
+
+  // addToCart(event: any) {
+  //   const userId = this.autherService.getUserIdNourhan();
+  //   if(userId != null){
+  //     console.log(event);
+  //     this.productName = event.name;
+  //     this.ProductImgUrl = event.img;
+  //     console.log("productImg :" ,this.ProductImgUrl)
+  //     this.orderService.addToCart(event.id,userId).subscribe(
+  //       () => {
+  //         this.openRemoveModal();
+  //         console.log('Product added to cart successfully!');
+  //       },
+  //       (error) => {
+  //         console.error('Could not add product to cart:', error);
+  //       }
+  //     );
+  //   }
+  // }
+  // openRemoveModal() {
+  //   this.modalService.open(this.openRemoveModal).result.then((result: string) => {
+  //     if (result === 'Remove') {
+  //       this.goToHome();
+  //     }
+  //     else this.goToCart();
+  //   });
+  // }
+
+  // goToHome():void{
+  //   this.router.navigate(['/']);
+  // }
+
+  // goToCart():void{
+  //   this.router.navigate(['/cart']);
+  // }
+
 
 }
 
