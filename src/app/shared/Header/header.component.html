@@ -88,7 +88,7 @@
 
           <li class="nav-item col-md-7">
             <a class="nav-link d-flex" (click)="isUserLoggedIn ? openMyAccount() : opensignin()">
-              <i class="fas fa-user"></i> {{ isUserLoggedIn ? 'MyAccount' : ('nav.sign_in' | translate) }}
+              <i class="fas fa-user"></i> {{ isUserLoggedIn ? ('nav.my_account' | translate) : ('nav.sign_in' | translate) }}
             </a>
           </li>
 
