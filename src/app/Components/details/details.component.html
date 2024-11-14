@@ -35,7 +35,7 @@
             product.translations[isArabic ? 1 : 0]?.description }}
           </p>
         </div>
-        <button class="btn btn-primary" (click)="addToCart(product)" >
+        <button class="btn btn-primary" (click)="addToCart(product)">
           {{ "product.add to cart" | translate }}
         </button>
       </div>
@@ -62,7 +62,8 @@
 </div>
 
 
-<ng-template #confirmRemoveModal let-modal>
+<!-- Modal for guests (userId is null) -->
+<ng-template #loginPromptModal let-modal>
   <div class="modal-header justify-content-center" style="font-weight: bold; background-color: rgb(244, 220, 175)">
     <h5 class="modal-title text-center">
       {{ "alert.login prompt" | translate }}
@@ -73,10 +74,37 @@
       {{ "alert.continue exploring" | translate }}
     </button>
     <button type="button" class="btn btn-dark" (click)="modal.close('cancel')">
-      {{ "go to cart" | translate }}
+      {{ "alert.go to login" | translate }}
     </button>
   </div>
-</ng-template> 
+</ng-template>
+
+<!-- Modal for logged-in users (userId is not null) -->
+<ng-template #confirmRemoveModal let-modal>
+  <div class="modal-body" style="font-weight: bold">
+    <div class="row">
+      <div class="col-md-2">
+        <img [src]="ProductImgUrl" alt="" style="width: 100%; max-width: 50px; height: auto" />
+      </div>
+      <div class="col-md-10">
+        <p style="font-weight: bold">
+          <i class="fa-solid fa-circle-check" style="color: green"></i>
+          &nbsp; {{ 'alertSuccess.explore products' | translate }}
+        </p>
+        <p>{{ productName }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer text-center">
+    <button type="button" class="btn btn-dark" (click)="modal.close('cancel')">
+      {{ 'alertSuccess.go to cart' | translate }}
+    </button>
+    <button type="button" class="btn btn-light" (click)="modal.close('Remove')">
+      {{ 'alertSuccess.explore products' | translate }}
+    </button>
+  </div>
+</ng-template>
+
 
 
 <!-- pop-up modal for add to cart if the user not logged in -->

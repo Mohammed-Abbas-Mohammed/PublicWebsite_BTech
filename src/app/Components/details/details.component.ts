@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AllproductsService } from '../../service/product/allproducts.service';
 import { CommonModule } from '@angular/common';
@@ -22,20 +29,20 @@ export class DetailsComponent implements OnInit {
   product: any;
   productTranslation: any;
   productspecification: ProductB[] = [];
-  productName:string='';
-  ProductImgUrl:string='';
-  
+  productName: string = '';
+  ProductImgUrl: string = '';
+
   @Input() data: any = {};
   @Output() item = new EventEmitter();
-  
+
   constructor(
     private route: ActivatedRoute,
-    private router :Router,
+    private router: Router,
     private allProductsService: AllproductsService,
     private recentProductsService: RecentProductsService, // إضافة خدمة المنتجات المشاهدة
     private translate: LocalizationService,
-    private autherService:AuthService,
-    private orderService :OrderService,
+    private autherService: AuthService,
+    private orderService: OrderService,
     private modalService: NgbModal
   ) {
     this.translate.IsArabic.subscribe((ar) => (this.isArabic = ar));
@@ -55,8 +62,8 @@ export class DetailsComponent implements OnInit {
     this.allProductsService.getProductById(productId).subscribe(
       (data) => {
         if (data.isSuccess) {
-            this.product = data.entity; // تخزين بيانات المنتج من الكائن entity
-            this.recentProductsService.addProductToRecent(this.product); // إضافة المنتج إلى قائمة المشاهدات الأخيرة
+          this.product = data.entity; // تخزين بيانات المنتج من الكائن entity
+          this.recentProductsService.addProductToRecent(this.product); // إضافة المنتج إلى قائمة المشاهدات الأخيرة
           this.product = data.entity; // تخزين بيانات المنتج من الكائن entity
         } else {
           console.warn('Product not found or error occurred:', data.msg);
@@ -72,7 +79,10 @@ export class DetailsComponent implements OnInit {
   getSpecificationDetail(spec: any): { key: string; value: string } {
     const translation = spec.translations[this.isArabic ? 1 : 0];
     return translation
-      ? { key: translation.translatedKey || 'N/A', value: translation.translatedValue || 'N/A' }
+      ? {
+          key: translation.translatedKey || 'N/A',
+          value: translation.translatedValue || 'N/A',
+        }
       : { key: 'N/A', value: 'N/A' };
   }
 
@@ -80,81 +90,80 @@ export class DetailsComponent implements OnInit {
     return this.isArabic ? `${price} ج.م` : `EGP ${price}`;
   }
 
- //=========== order related functions ==========
-//  @ViewChild('confirmRemoveModal') confirmRemoveModal: any;
+  //=========== order related functions ==========
+  //  @ViewChild('confirmRemoveModal') confirmRemoveModal: any;
 
- @ViewChild('confirmRemoveModal') confirmRemoveModal: any;
+  @ViewChild('confirmRemoveModal') confirmRemoveModal: any;
+  @ViewChild('loginPromptModal') loginPromptModal: any;
 
- openRemoveModal() {
-   this.modalService.open(this.confirmRemoveModal).result.then(
-     (result: any) => {
-       if (result === 'Remove') {
-         this.goToHome();
-       } else {
-         this.goToCart();
-       }
-     },
-     (dismiss: any) => {
-       console.log('Modal dismissed:', dismiss);
-     }
-   );
- }
- 
+  openRemoveModal(template: any) {
+    const modalRef = this.modalService.open(template);
+    modalRef.result.then(
+      (result: any) => {
+        if (result === 'Remove') {
+          this.goToHome();
+        } else if (result === 'cancel') {
+          this.goToCart();
+        }
+      },
+      (dismiss: any) => {
+        console.log('Modal dismissed:', dismiss);
+      }
+    );
+  }
 
-//  add(data:any): void {
-//    const userId = this.autherService.getUserIdNourhan();
-//    if(userId != null){
-//      var productInfo = {
-//        id: data.id,
-//        img: (data.product?.images && data.product.images.length > 0) ? data.product.images[0].url : (data.images?.[0]?.url || 'default-image-url.png'),
-//        name: data.product?.translations?.[0]?.name || data.translations?.[0]?.name || 'Product Name' 
-//      }
-//      this.item.emit(productInfo);
-//    }
-//    else{
-//      this.openRemoveModal();
-//    }
-   
-//  }
+  //  add(data:any): void {
+  //    const userId = this.autherService.getUserIdNourhan();
+  //    if(userId != null){
+  //      var productInfo = {
+  //        id: data.id,
+  //        img: (data.product?.images && data.product.images.length > 0) ? data.product.images[0].url : (data.images?.[0]?.url || 'default-image-url.png'),
+  //        name: data.product?.translations?.[0]?.name || data.translations?.[0]?.name || 'Product Name'
+  //      }
+  //      this.item.emit(productInfo);
+  //    }
+  //    else{
+  //      this.openRemoveModal();
+  //    }
 
- addToCart(event: any) {
-  const userId = this.autherService.getUserIdNourhan();
-  if (userId != null) {
+  //  }
+
+  addToCart(event: any) {
+    const userId = this.autherService.getUserIdNourhan();
     this.productName = event.translations[0]?.name || 'Unknown Product';
     this.ProductImgUrl = event.images?.[0]?.url || 'default-image-url.png';
 
-    this.orderService.addToCart(event.id, userId).subscribe(
-      () => {
-        this.openRemoveModal();
-        console.log('Product added to cart successfully!');
-      },
-      (error) => {
-        console.error('Could not add product to cart:', error);
-      }
-    );
-  } else {
-    this.openRemoveModal();
+    if (userId != null) {
+      this.orderService.addToCart(event.id, userId).subscribe(
+        () => {
+          this.openRemoveModal(this.confirmRemoveModal); // Pass the logged-in modal
+          console.log('Product added to cart successfully!');
+        },
+        (error) => {
+          console.error('Could not add product to cart:', error);
+        }
+      );
+    } else {
+      this.openRemoveModal(this.loginPromptModal); // Pass the login prompt modal
+    }
   }
-}
 
+  //  openRemoveModal() {
+  //    this.modalService.open(this.confirmRemoveModal).result.then((result:any) => {
+  //      if (result === 'Remove') {
+  //        this.goToHome();
+  //      }
+  //      else this.goToCart();
+  //    });
+  //  }
 
-//  openRemoveModal() {
-//    this.modalService.open(this.confirmRemoveModal).result.then((result:any) => {
-//      if (result === 'Remove') {
-//        this.goToHome();
-//      }
-//      else this.goToCart();
-//    });
-//  }
+  goToHome(): void {
+    this.router.navigate(['/']);
+  }
 
- goToHome():void{
-   this.router.navigate(['/']); 
- }
-
- goToCart():void{
-   this.router.navigate(['/cart']); 
- }
-
+  goToCart(): void {
+    this.router.navigate(['/cart']);
+  }
 
   // addToCart(event: any) {
   //   const userId = this.autherService.getUserIdNourhan();
@@ -190,8 +199,4 @@ export class DetailsComponent implements OnInit {
   // goToCart():void{
   //   this.router.navigate(['/cart']);
   // }
-
-
 }
-
-

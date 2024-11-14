@@ -59,6 +59,11 @@
     "continue exploring": "تابع استكشاف المنتجات",
     "go to login": "اذهب إلى تسجيل الدخول"
   },
+  "alertSuccess": {
+    "item added": "تمت إضافة هذا العنصر إلى سلة التسوق",
+    "go to cart": "الذهاب إلى السلة",
+    "explore products": "استكشاف المنتجات"
+  },
   "signin": {
     "welcome message": "هيا لنبدأ!",
     "instruction": "استخدم بريدك الإلكتروني وكلمة المرور لتسجيل الدخول.",

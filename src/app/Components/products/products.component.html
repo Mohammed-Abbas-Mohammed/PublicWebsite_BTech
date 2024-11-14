@@ -83,20 +83,20 @@
       <div class="col-md-10">
         <p style="font-weight: bold">
           <i class="fa-solid fa-circle-check" style="color: green"></i>
-          &nbsp; This item has been added to cart
+          &nbsp; {{'alertSuccess.explore products'|translate}}
         </p>
         <p>
-          {{ productName }}
+          {{ productName}}
         </p>
       </div>
     </div>
   </div>
   <div class="modal-footer text-center">
     <button type="button" class="btn btn-dark" (click)="modal.close('cancel')">
-      Go to cart
+      {{'alertSuccess.go to cart'|translate}}
     </button>
     <button type="button" class="btn btn-light" (click)="modal.close('Remove')">
-      Explore products
+      {{'alertSuccess.explore products'|translate}}
     </button>
   </div>
 </ng-template>

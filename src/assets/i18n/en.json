@@ -59,6 +59,11 @@
     "continue exploring": "Continue exploring products",
     "go to login": "Go to log in"
   },
+  "alertSuccess": {
+    "item added": "This item has been added to cart",
+    "go to cart": "Go to cart",
+    "explore products": "Explore products"
+  },
   "signin": {
     "welcome message": "Let's get started!",
     "instruction": "Use your email and password to sign in.",
