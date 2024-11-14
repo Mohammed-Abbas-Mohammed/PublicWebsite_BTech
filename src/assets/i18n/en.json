@@ -150,6 +150,30 @@
     "placeOrder": "Place Order",
     "city": "The city"
   },
+  "orders": {
+    "loading": "Loading orders...",
+    "order id": "Order ID:",
+    "date": "Date:",
+    "total price": "Total Price:",
+    "myStatus": "Status:",
+    "items": "Items:",
+    "quantity": "Quantity:",
+    "price": "Price:",
+    "no orders": "No orders found.",
+    "status": {
+      "1": "Processing",
+      "2": "Shipped",
+      "3": "Completed",
+      "default": "Unknown"
+    }
+  },
+
+  "status": {
+    "1": "Processing",
+    "2": "Shipped",
+    "3": "Completed",
+    "default": "Unknown"
+  },
   "footer": {
     "call_support": "Call support",
     "support_number": "19966",

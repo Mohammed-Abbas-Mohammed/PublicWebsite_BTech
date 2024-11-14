@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container my-4">
 <div [dir]="isArabic ? 'rtl' : 'ltr'" class="page-container">
     <!-- Sidebar -->
     <aside class="sidebar ">
@@ -64,13 +64,12 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="card">
-            <div class="welcome-message card-body">
+            <div class="welcome-message ">
                 <h1><strong>{{'account.greeting'|translate}} {{userName}}</strong></h1>
             </div>
-        </div>
+
         <!-- Orders Section (Empty Space) -->
-        <div class="orders-section" *ngIf="showOrders">          
+        <div class="orders-section" *ngIf="showOrders">
               <app-my-orders></app-my-orders>
             <!-- Orders content can be added here -->
         </div>

@@ -1,34 +1,33 @@
+/* General Reset */
 * {
     box-sizing: border-box;
 }
 
+/* Container with Shadow */
 .page-container {
     display: flex;
     height: 100vh;
     font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
 }
 
+/* Sidebar Styling */
 .sidebar {
-    /* width: 250px;
-    background-color: #f8f9fa;
-    padding: 5px; */
-    position:absolute;
-    /* top: 0; */
-    left: 0;
-    width: 350px;
-    height: 100%;
-    background-color: #f8f9fa;
-    padding: 5px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  height: 100%;
+  background-color: #f8f9fa;
+  padding: 5px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
 }
-.main-content {
-    margin-left: 250px; 
-    /* إضافة هامش يعادل عرض الشريط الجانبي */
-    padding: 20px;
-    background-color: #ffffff;
-    width: calc(100% - 250px);
-     /* لضبط عرض المحتوى الرئيسي بحيث يبدأ بعد الشريط الجانبي */
-}
+
 .sidebar h2 {
     color: #0e001a;
 }
@@ -38,7 +37,6 @@
     padding: 10px;
     margin: 0;
 }
-
 
 .sidebar a {
     text-decoration: none;
@@ -52,7 +50,6 @@
 
 .sidebar a:hover {
     background-color: #cdcdcd;
-    /* color: #0e001a; */
 }
 
 .sidebar button {
@@ -78,21 +75,71 @@
 }
 
 .app-links img {
-    width: 100px;
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    margin: 10px 0;
 }
 
+/* Main Content Styling */
 .main-content {
     flex: 1;
     padding: 20px;
     background-color: #ffffff;
 }
 
+/* Welcome Message Styling */
 .welcome-message h1 {
-    font-size: 2em;
+    font-size: 2.5em;
     color: #0e001a;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: capitalize;
+    line-height: 1.2;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: #f1f1f1;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 
 .orders-section {
     margin-top: 20px;
-    /* يمكن إضافة المزيد من التنسيقات هنا لقسم الطلبات */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Stack Sidebar and Main Content on Top of Each Other */
+    .page-container {
+        flex-direction: column;
+    }
+
+    /* Sidebar Adjustments for Small Screens */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+        padding: 10px;
+        order: 1; /* Place below main content if needed */
+    }
+
+    /* Main Content Adjustments */
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        order: 2;
+    }
+
+    .app-links img {
+        max-width: 100px;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Extra Small Screen Adjustments */
+    .app-links img {
+        max-width: 80px;
+    }
 }
