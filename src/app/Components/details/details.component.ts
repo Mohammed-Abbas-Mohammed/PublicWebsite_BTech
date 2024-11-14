@@ -130,7 +130,8 @@ export class DetailsComponent implements OnInit {
 
   addToCart(event: any) {
     const userId = this.autherService.getUserIdNourhan();
-    this.productName = event.translations[0]?.name || 'Unknown Product';
+    const translationIndex = this.isArabic ? 1 : 0;  // Set the index based on the language
+    this.productName = event.translations[translationIndex]?.name || 'Unknown Product';
     this.ProductImgUrl = event.images?.[0]?.url || 'default-image-url.png';
 
     if (userId != null) {
