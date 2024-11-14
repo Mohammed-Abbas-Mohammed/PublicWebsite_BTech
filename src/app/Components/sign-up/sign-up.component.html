@@ -78,8 +78,8 @@
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary btn-block mt-4" [disabled]="!signUpForm.valid">
-          {{'signup.signin'|translate}}
+        <button type="submit" class="btn btn-primary btn-block mt-4" [disabled]="!signUpForm.valid"(click)="signin()">
+          {{'signup.signup'|translate}}
         </button>
       </form>
 

@@ -88,6 +88,7 @@
     "validMobileRequired": "يرجى إدخال رقم هاتف صالح",
     "passwordLength": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
     "passwordsMatch": "يجب أن تتطابق كلمات المرور",
+    "signup": "تسجيل",
     "signin": "تسجيل الدخول",
     "already have an account": "لديك حساب بالفعل؟"
   },

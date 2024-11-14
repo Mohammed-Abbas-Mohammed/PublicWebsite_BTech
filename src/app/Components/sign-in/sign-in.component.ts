@@ -77,7 +77,7 @@ useLanguage() {
   this.translate.ChangeLanguage();
 }
 signup(){
-  this.router.navigate(['remember-by-phoone']);
+  this.router.navigate(['/sign-up']);
 }
 signin(){
   this.router.navigate(['/promotion']);

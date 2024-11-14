@@ -88,6 +88,7 @@
     "validMobileRequired": "Please enter a valid mobile number",
     "passwordLength": "Password must be at least 6 characters",
     "passwordsMatch": "Passwords must match",
+    "signup": "Sign Up",
     "signin": "Sign In",
     "already have an account": "Already have an account?"
   },
