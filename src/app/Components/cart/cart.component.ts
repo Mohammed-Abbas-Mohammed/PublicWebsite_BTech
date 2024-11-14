@@ -175,7 +175,9 @@ export class CartComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-
-
+  getFormattedPrice(price: number): string {
+    const formattedPrice = price.toFixed(2); // Ensures 2 decimal places
+    return this.isArabic ? `${formattedPrice} ج.م` : `EGP ${formattedPrice}`;
+  }
 
 }

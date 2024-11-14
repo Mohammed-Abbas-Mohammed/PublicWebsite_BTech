@@ -39,7 +39,7 @@
             <div class="item-details col-md-9 text-start">
               <p class="item-name">{{ item.productName }}</p>
               <!-- <p class="item-price">{{ item.quantity }}</p> -->
-              <h3 class="item-price" style="font-weight: bold;">EGP {{ item.productPrice }}</h3>
+              <h3 class="item-price" style="font-weight: bold;"> {{getFormattedPrice( item.productPrice) }}</h3>
             </div>
 
             <div class="col-md-3 text-end">
@@ -67,7 +67,7 @@
         </div>
         <div class="row" style="margin-bottom: 15px; font-size: 20px;">
           <div style="font-weight: bold;" class="col-md-6 text-start">{{'cart.Subtotal'|translate}}</div>
-          <div style="font-weight: bold;" class="col-md-6 text-end">{{ totalCost.toFixed(2) }} EGP</div>
+          <div style="font-weight: bold;" class="col-md-6 text-end">{{ getFormattedPrice(totalCost) }}</div>
         </div>
         <button (click)="goToCheckout()" class="checkout-btn">{{'cart.checkout'|translate}}</button>
       </div>
