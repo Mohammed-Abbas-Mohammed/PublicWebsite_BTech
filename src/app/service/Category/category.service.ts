@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 })
 export class CategoryService {
 
-  private thisapi='https://localhost:7122/api';
+  private thisapi='https://btechapi.runasp.net/api';
 
 
   constructor(private http:HttpClient) { }
@@ -49,5 +49,5 @@ export class CategoryService {
 getProductsByCategoryName(categoryName: string): Observable<any> {
   return this.http.get<any>(`${this.thisapi}/Category/GetProductsByCategoryName/${categoryName}`);
 }
- 
+
 }

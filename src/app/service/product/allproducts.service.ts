@@ -11,7 +11,7 @@ export class AllproductsService {
 
   constructor(private http: HttpClient) {}
 
-  private thisapi='https://localhost:7122/api';
+  private thisapi='https://btechapi.runasp.net/api';
 
 
 
@@ -41,11 +41,11 @@ export class AllproductsService {
   //   return this.http.get<ProductB[]>(`${this.thisapi}/Category/GetProductsByCategoryName/${categoryName}`);
   // }
 
- 
+
   getProductsByCategoryName(categoryName: string): Observable<any> {
     return this.http.get<any>(`${this.thisapi}/Category/GetProductsByCategoryName/${categoryName}`);
   }
-   
+
   getPaginatedProducts(pageNumber: number, pageSize: number): Observable<ProductB[]> {
     const params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
@@ -53,6 +53,6 @@ export class AllproductsService {
 
     return this.http.get<ProductB[]>(`${this.thisapi}/product/GetPaginated`, { params });
   }
-  
- 
+
+
 }

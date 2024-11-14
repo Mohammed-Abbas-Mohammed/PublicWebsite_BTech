@@ -8,3 +8,24 @@
     overflow: hidden; /* Ensures the images stay within the rounded corners */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
+
+  .greeting-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 15px;
+    background-color: #f1f1f1;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .greeting-message {
+    font-size: 1.4em;
+    color: #3b3b3b;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+  }

@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiBaseUrl: 'https://localhost:7122/api'
+  apiBaseUrl: 'https://btechapi.runasp.net/api'
 };

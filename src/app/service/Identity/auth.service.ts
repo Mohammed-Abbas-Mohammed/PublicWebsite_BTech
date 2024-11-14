@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 
 export class AuthService {
-  private apiUrl = 'https://localhost:7122/api/Account' ; // استخدم رابط الـ API الخاص بك
+  private apiUrl = 'https://btechapi.runasp.net/api/Account' ; // استخدم رابط الـ API الخاص بك
   private loggedInStatus = new BehaviorSubject<boolean>(this.isLoggedIn());
 
   // Expose the loggedInStatus as an observable for components to subscribe to
@@ -35,7 +35,7 @@ export class AuthService {
     }
     return null;
   }
-  
+
   checkPhoneNumber(mobileNumber: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/CheckNumber`, { PhoneNumber: mobileNumber });
   }

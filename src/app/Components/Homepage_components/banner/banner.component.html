@@ -1,6 +1,10 @@
-<div class="container mt-5 mb-4">
-  <h5 *ngIf="isLoggedIn" class="p-2">Hi, {{userName}}</h5>
-  <div id="carouselExampleControls" class="carousel slide custom-rounded" data-bs-ride="carousel">
+<div class="container mt-4 mb-4">
+  <div *ngIf="isLoggedIn" class="greeting-container">
+    <h5 class="greeting-message">
+      {{ 'account.greeting' | translate }} {{ userName }}
+    </h5>
+  </div>
+    <div id="carouselExampleControls" class="carousel slide custom-rounded" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div *ngFor="let image of images; let i = index" [class]="i === 0 ? 'carousel-item active' : 'carousel-item'"  >
         <img [src]="image.url" class="d-block w-100" [alt]="'Slide ' + (i + 1)" (click)="productPage()">

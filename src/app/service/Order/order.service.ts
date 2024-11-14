@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrl = 'https://localhost:7122/api/Order'; // Update with your API base URL
+  private apiUrl = 'https://btechapi.runasp.net/api/Order'; // Update with your API base URL
 
   constructor(private http: HttpClient) {}
 

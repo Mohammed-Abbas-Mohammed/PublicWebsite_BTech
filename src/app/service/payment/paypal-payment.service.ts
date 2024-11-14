@@ -14,7 +14,7 @@ interface PaymentDetails {
 })
 export class PaypalPaymentService {
 
-  private apiUrl = 'https://localhost:7122/api/paypal'; // Update with your actual API endpoint
+  private apiUrl = 'https://btechapi.runasp.net/api/paypal'; // Update with your actual API endpoint
 
   constructor(private http: HttpClient) {}
 

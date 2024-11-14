@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { Route, Router } from '@angular/router';
 import { LocalizationService } from '../../../service/localiztionService/localization.service';
 import { AuthService } from '../../../service/Identity/auth.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
 interface Image {
   url_en: string;
   url_ar: string;
@@ -16,7 +18,7 @@ interface Image {
   standalone: true,
   templateUrl: './banner.component.html',
   styleUrls: ['./banner.component.css'],
-  imports: [CommonModule]
+  imports: [CommonModule,TranslateModule]
 })
 export class BannerComponent implements OnInit {
   images: Image[] = [];
@@ -41,11 +43,11 @@ export class BannerComponent implements OnInit {
       this.isLoggedIn = loggedInStatus;
       this.userName = loggedInStatus ? this.authService.getUserNameFromToken() || '' : '';
     });
-    
+
   }
 
 
- 
+
 
   loadImages() {
     this.http.get<Image[]>('http://localhost:3000/Images').subscribe((data) => {
