@@ -1,43 +1,48 @@
-<div class="container my-4 text-center" style="width: 80%;">
+<div class="container my-4 text-center" style="width: 80%">
   <div class="row">
     <div class="col-md-7 cart-page text-start">
       <p class="hint">
         <i class="fa-solid fa-box"></i>
-        {{'payment.separateOrders' | translate}}
+        {{ "payment.separateOrders" | translate }}
       </p>
 
       <!-- Accordion for Delivery Details and Payment Info -->
       <div class="accordion" id="accordionPanelsStayOpenExample">
-
         <!-- Delivery Details Section -->
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button id="delivery" class="accordion-button section-parts" type="button" data-bs-toggle="collapse"
               data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
               aria-controls="panelsStayOpen-collapseOne">
-              <div style="font-weight: bold; font-size: 20px;">
+              <div style="font-weight: bold; font-size: 20px">
                 <div class="section-number">1</div>
-                <div style="display: inline-block;">&nbsp;{{'payment.deliveryDetails' | translate}}</div>
+                <div style="display: inline-block">
+                  &nbsp;{{ "payment.deliveryDetails" | translate }}
+                </div>
               </div>
             </button>
           </h2>
           <div id="panelsStayOpen-collapseOne" *ngIf="currentStep == 1">
             <div class="accordion-body">
               <div class="form-group">
-
-                <label for="city"
-                  style="font-size: 18px; font-weight: bold; margin-top: 33px; display: block;">{{'payment.deliveryArea'|translate}}</label>
-                <br>
+                <label for="city" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    margin-top: 33px;
+                    display: block;
+                  ">{{ "payment.deliveryArea" | translate }}</label>
+                <br />
                 <div class="text-center">
                   <button (click)="openCitySidebar()" class="cityButton">
                     <div class="row">
-                      <div class="col-md-8 text-start" style="padding: 0 20px;">
+                      <div class="col-md-8 text-start" style="padding: 0 20px">
                         <p>
-                          <span style="color: rgb(180, 177, 177); font-size: 10px;">{{'payment.city'|translate}}</span>
-                          <br>{{choosedCity}}
+                          <span style="color: rgb(180, 177, 177); font-size: 10px">{{ "payment.city" | translate
+                            }}</span>
+                          <br />{{ choosedCity }}
                         </p>
                       </div>
-                      <div class="col-md-4 text-end" style="padding: 0 20px; padding-top: 20px;">
+                      <div class="col-md-4 text-end" style="padding: 0 20px; padding-top: 20px">
                         <i class="fa-solid fa-angle-down"></i>
                       </div>
                     </div>
@@ -45,19 +50,23 @@
                   <app-city-sidebar (dataSent)="receiveData($event)" #citySidebar [cities]="cities"></app-city-sidebar>
                 </div>
 
-                <div style="display: none; margin-top: 15px;" class="text-start" id="fullAddress">
+                <div style="display: none; margin-top: 15px" class="text-start" id="fullAddress">
                   <div class="row">
-                    <p style="font-size: 18px; font-weight: bold;">{{'payment.enterAddress'|translate}}</p>
+                    <p style="font-size: 18px; font-weight: bold">
+                      {{ "payment.enterAddress" | translate }}
+                    </p>
                   </div>
                   <div class="row text-center">
-                    <input class="cityButton" minlength="10" style="width: 90%; margin: 15px 20px;" type="text"
-                      (keydown)="fullAddress()">
+                    <input class="cityButton" minlength="10" style="width: 90%; margin: 15px 20px" type="text"
+                      (keydown)="fullAddress()" />
                   </div>
                 </div>
 
-                <div class="text-center" style="margin: 15px 0; display: none;" id="continueDelivery">
+                <div class="text-center" style="margin: 15px 0; display: none" id="continueDelivery">
                   <button (click)="nextStep()" class="btn btn-dark text-center orderButton"
-                    style="width: 95%; border-radius: 10px; padding: 10px"> {{'payment.continue' | translate}}</button>
+                    style="width: 95%; border-radius: 10px; padding: 10px">
+                    {{ "payment.continue" | translate }}
+                  </button>
                 </div>
               </div>
             </div>
@@ -67,118 +76,173 @@
         <!-- Payment Info Section -->
         <div class="accordion-item">
           <h2 class="accordion-header">
-            <button style="color: gray;" id="pay" disabled class="accordion-button collapsed section-parts"
-              type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+            <button style="color: gray" id="pay" disabled class="accordion-button collapsed section-parts" type="button"
+              data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
               aria-controls="panelsStayOpen-collapseTwo">
-              <div style="font-weight: bold; font-size: 20px;">
+              <div style="font-weight: bold; font-size: 20px">
                 <div class="section-number-disable" id="payp">2</div>
-                <div style="display: inline-block;">&nbsp;{{'payment.paymentInfo' | translate}}</div>
+                <div style="display: inline-block">
+                  &nbsp;{{ "payment.paymentInfo" | translate }}
+                </div>
               </div>
             </button>
           </h2>
           <div id="panelsStayOpen-collapseTwo" *ngIf="currentStep == 2">
-            <div class="accordion-body" style="font-size: 15px;">
-
-              <label>{{'payment.selectPaymentMethod'|translate}}</label>
-              <div class="row" style="margin: 15px 0;">
+            <div class="accordion-body" style="font-size: 15px">
+              <label>{{ "payment.selectPaymentMethod" | translate }}</label>
+              <div class="row" style="margin: 15px 0">
                 <div class="col-md-6 text-start">
                   <input (click)="chashPayment()" type="radio" id="cash" name="paymentMethod"
-                    [(ngModel)]="selectedPaymentMethod" value="cash">
-                  <label [ngClass]="{'selected-label': selectedPaymentMethod === 'cash'}"
-                    for="cash">{{'payment.cashOnDelivery'|translate}}</label>
+                    [(ngModel)]="selectedPaymentMethod" value="cash" />
+                  <label [ngClass]="{
+                      'selected-label': selectedPaymentMethod === 'cash'
+                    }" for="cash">{{ "payment.cashOnDelivery" | translate }}</label>
                 </div>
                 <div class="col-md-6 text-end">
-                  <i [ngClass]="{'selected-label': selectedPaymentMethod === 'cash'}" class="fa-solid fa-wallet"></i>
+                  <i [ngClass]="{
+                      'selected-label': selectedPaymentMethod === 'cash'
+                    }" class="fa-solid fa-wallet"></i>
                 </div>
               </div>
 
-              <div class="row" style="margin: 15px 0;">
+              <div class="row" style="margin: 15px 0">
                 <div class="col-md-6 text-start">
                   <input type="radio" id="paypal" name="paymentMethod" [(ngModel)]="selectedPaymentMethod"
-                    value="paypal">
-                  <label [ngClass]="{'selected-label': selectedPaymentMethod === 'paypal'}"
-                    for="paypal">{{'payment.paypal'|translate}}</label>
+                    value="paypal" />
+                  <label [ngClass]="{
+                      'selected-label': selectedPaymentMethod === 'paypal'
+                    }" for="paypal">{{ "payment.paypal" | translate }}</label>
                 </div>
                 <div class="col-md-6 text-end">
-                  <i [ngClass]="{'selected-label': selectedPaymentMethod === 'paypal'}"
-                    class="fa-regular fa-credit-card"></i>
+                  <i [ngClass]="{
+                      'selected-label': selectedPaymentMethod === 'paypal'
+                    }" class="fa-regular fa-credit-card"></i>
                 </div>
               </div>
 
               <div *ngIf="selectedPaymentMethod === 'paypal'">
                 <app-paypal-button [amount]="totalAmount"></app-paypal-button>
               </div>
-
             </div>
 
             <!-- continue to payment -->
-            <div class="text-center" style="margin: 15px 0;">
+            <div class="text-center" style="margin: 15px 0">
               <button (click)="placeOrder()" id="continuePayment" disabled class="btn btn-dark text-center orderButton"
-                style="width: 95%; border-radius: 10px; padding: 10px"> {{'payment.continue' | translate}}</button>
+                style="width: 95%; border-radius: 10px; padding: 10px">
+                {{ "payment.continue" | translate }}
+              </button>
             </div>
-
           </div>
         </div>
-
       </div>
     </div>
 
     <!-- Order Summary Section -->
-    <div class="col-md-4 smallCart">
-      <h5 style="font-weight: bold; margin-top: 10px;" class="text-start">{{'payment.orderSummary'|translate}}</h5>
-      <div *ngFor="let order of cartItems; let i = index" style="width: 100%;">
-        <br>
-        <div style="border-bottom: 2px solid rgb(205, 201, 201); width: 100%;">
-          <p class="text-start" style="font-weight: bold;">{{'payment.order'|translate}} {{i + 1}}</p>
-          <div class="row">
-            <img [src]="order.imageUrl" alt="Product Image" class="col-md-2">
-            <p class="col-md-6 text-start">{{ order.productName }}</p>
-            <p class="col-md-4 text-end">{{ getFormattedPrice(order.productPrice.toFixed(2))}}</p>
+    <div class="col-md-4 smallCart shadow rounded">
+      <h5 class="text-center bold">{{ "payment.orderSummary" | translate }}</h5>
+      <div *ngFor="let order of cartItems; let i = index" style="width: 100%" class="container shadow-sm rounded my-3">
+        <br />
+        <div style="border-bottom: 2px solid rgb(205, 201, 201)">
+          <p class="text-start" style="font-weight: bold">
+            {{ "payment.order" | translate }} {{ i + 1 }}
+          </p>
+          <div class="shadow-sm rounded p-3">
+            <p class="col-md-12 text-start">{{ order.productName }}</p>
+            <!-- <p class="col-md-4 text-end">{{ getFormattedPrice(order.productPrice)}}</p> -->
           </div>
-          <hr>
-          <div class="row" style="margin-top: 15px;">
-            <div class="col-md-6 text-start">{{'payment.quantity'|translate}}</div>
-            <div class="col-md-6 text-end">{{order.quantity}} {{'payment.items'|translate}}</div>
+          <hr />
+          <div class="row" style="margin-top: 15px">
+            <div class="col-md-6 text-start">
+              {{ "payment.quantity" | translate }}
+            </div>
+            <div class="col-md-6 text-end">
+              {{ order.quantity }} {{ "payment.items" | translate }}
+            </div>
           </div>
-          <div class="row" style="margin-top: 15px;">
-            <div class="col-md-6 text-start">{{'payment.itemValue'|translate}}</div>
-            <div class="col-md-6 text-end">{{getFormattedPrice( order.productPrice.toFixed(2) )}}</div>
+          <div class="row" style="margin-top: 15px">
+            <div class="col-md-6 text-start">
+              {{ "payment.itemValue" | translate }}
+            </div>
+            <div class="col-md-6 text-end">
+              {{ getFormattedPrice(order.productPrice) }}
+            </div>
           </div>
-          <div class="row" style="margin-top: 15px;">
+          <!-- <div class="row" style="margin-top: 15px;">
             <div class="col-md-6 text-start">{{'payment.deliveryFee'|translate}}</div>
             <div class="col-md-6 text-end">{{ getFormattedPrice(fee) }}</div>
           </div>
           <div class="row" style="margin-top: 15px;">
             <div class="col-md-6 text-start">{{'payment.total'|translate}}</div>
-            <div class="col-md-6 text-end">{{ getFormattedPrice((order.productPrice + fee).toFixed(2))}}</div>
+            <div class="col-md-6 text-end">{{ getFormattedPrice(order.productPrice + fee)}}</div>
+          </div> -->
+          <br />
+        </div>
+      </div>
+      <br />
+      <div class="payment-summary-container">
+        <h5 class="summary-title">
+          {{ "payment.summaryTitle" | translate }}
+        </h5>
+
+        <div class="row amount-row">
+          <div class="col-md-6 text-start">
+            <p class="label">{{ "payment.amountWithoutFee" | translate }}</p>
           </div>
-          <br>
+          <div class="col-md-6 text-end">
+            <p class="value">{{ getFormattedPrice(totalAmount) }}</p>
+          </div>
+        </div>
+
+        <div class="row fee-row">
+          <div class="col-md-6 text-start">
+            <p class="label">{{ "payment.deliveryFee" | translate }}</p>
+          </div>
+          <div class="col-md-6 text-end">
+            <p class="value">{{ getFormattedPrice(fee) }}</p>
+          </div>
+        </div>
+
+        <div class="row total-amount-row">
+          <div class="col-md-6 text-center">
+            <p class="label fw-bold">
+              {{ "payment.amountWithFee" | translate }}<br />{{
+              "payment.fee" | translate
+              }}
+            </p>
+          </div>
+          <div class="col-md-6 text-end">
+            <p class="value fw-bold total-value">
+              {{ getFormattedPrice(totalAmount + fee) }}
+            </p>
+          </div>
         </div>
       </div>
 
       <!-- Promo Code Section -->
-      <div class="text-start" style="margin-top: 15px;">
-        <a style="text-decoration: none; color: rgb(62, 62, 222);" (click)="discount()">
-          {{'payment.havePromoCode'|translate}}
+      <div class="text-start" style="margin-top: 15px">
+        <a style="text-decoration: none; color: rgb(62, 62, 222)" (click)="discount()">
+          {{ "payment.havePromoCode" | translate }}
         </a>
-        <div class="row" style="margin-top: 15px; display: none;" id="discountPromo">
+        <div class="row" style="margin-top: 15px; display: none" id="discountPromo">
           <div class="col-md-8">
-            <input type="text" style="border: 1px solid rgb(191, 190, 190);" placeholder="Enter promo code" id="promo"
-              (keypress)="enableButton()">
+            <input type="text" style="border: 1px solid rgb(191, 190, 190)" placeholder="Enter promo code" id="promo"
+              (keypress)="enableButton()" />
           </div>
           <div class="col-md-4">
-            <button disabled id="promoButton" class="btn btn-dark"
-              (click)="applyDiscount()">{{'payment.apply'|translate}}</button>
+            <button disabled id="promoButton" class="btn btn-dark" (click)="applyDiscount()">
+              {{ "payment.apply" | translate }}
+            </button>
           </div>
         </div>
       </div>
 
       <!-- Place Order Button -->
-      <div class="text-center" style="margin-top: 15px;">
+      <div class="text-center" style="margin-top: 15px">
         <button (click)="completePayment()" id="finish" disabled class="btn btn-dark text-center orderButton"
-          style="width: 100%; border-radius: 10px; padding: 10px">{{'payment.placeOrder'|translate}}</button>
+          style="width: 100%; border-radius: 10px; padding: 10px">
+          {{ "payment.placeOrder" | translate }}
+        </button>
       </div>
-
     </div>
   </div>
 </div>

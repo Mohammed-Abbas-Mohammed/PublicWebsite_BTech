@@ -162,12 +162,13 @@ export class CartComponent implements OnInit {
   }
   /////////////////////////////////////////
   goToCheckout() {
-    if(this.cartItems.length > 0){
+    if (this.cartItems.length > 0) {
       this.orderId = this.cartItems[0].orderId;
-      this.router.navigate(['/payment', this.orderId]);
-    }
-    else{
-      alert("You don't have items in the your cart!");
+      this.router.navigate(['/payment', this.orderId], {
+        queryParams: { totalCost: this.totalCost },
+      });
+    } else {
+      alert("You don't have items in your cart!");
     }
   }
 

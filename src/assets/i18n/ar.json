@@ -138,7 +138,7 @@
     "selectPaymentMethod": "اختر طريقة الدفع:",
     "cashOnDelivery": "الدفع عند الاستلام",
     "paypal": "باي بال",
-    "orderSummary": "ملخص الطلب",
+    "orderSummary": "فاتورة",
     "order": "طلب",
     "quantity": "الكمية:",
     "items": "العناصر",
@@ -148,8 +148,13 @@
     "havePromoCode": "لدي رمز ترويجي",
     "apply": "تطبيق",
     "placeOrder": "إتمام الطلب",
-    "city": "المدينة"
-  },
+    "city": "المدينة",
+    "totalAmount": "إجمالي المبلغ",
+    "summaryTitle": "ملخص الطلب",
+    "amountWithoutFee": "المبلغ بدون الرسوم",
+    "amountWithFee": "المبلغ الإجمالي",
+    "fee": "برسوم التوصيل"
+    },
   "orders": {
     "loading": "جارٍ تحميل الطلبات...",
     "order id": "رقم الطلب:",

@@ -25,7 +25,6 @@ import { ActivatedRoute } from '@angular/router';
 import { LocalizationService } from '../../service/localiztionService/localization.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
-
 @Component({
   selector: 'app-payment',
   standalone: true,
@@ -34,7 +33,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     FormsModule,
     PaypalButtonComponent,
     CitySidebarComponent,
-    TranslateModule
+    TranslateModule,
   ],
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css',
@@ -57,7 +56,7 @@ export class PaymentComponent implements OnInit {
   cartItems: any[] = [];
   fee: number = 70;
   selectedPaymentMethod: string = 'paypal';
-  totalAmount: number = 100;
+  totalAmount: any = 100;
   isExpanded: boolean = false;
   orderId: number | null = 0;
 
@@ -68,8 +67,7 @@ export class PaymentComponent implements OnInit {
     private paypalService: PaypalPaymentService,
     private authService: AuthService,
     private route: ActivatedRoute,
-    private translate: LocalizationService,
-
+    private translate: LocalizationService
   ) {
     this.translate.IsArabic.subscribe((ar) => (this.isArabic = ar));
   }
@@ -115,10 +113,18 @@ export class PaymentComponent implements OnInit {
   @ViewChild('citySidebar') citySidebar: any;
   choosedCity: string = 'Select city';
   ngOnInit(): void {
+    // Get 'totalCost' from query params and ensure it's a valid number
+    this.route.queryParams.subscribe((params) => {
+      const totalCost = parseFloat(params['totalCost']); // Parse as a number
+      this.totalAmount = isNaN(totalCost) ? 0 : totalCost; // Default to 0 if invalid
+    });
+
+    // Load cart items
     this.loadCartItems();
-    // alert(this.route.snapshot.paramMap.get('orderId'));
-    this.orderId = Number(this.route.snapshot.paramMap.get('orderId'));
-    // alert(`${this.orderId}agu`);
+
+    // Get 'orderId' from the route snapshot and ensure it's a valid number
+    const orderIdFromRoute = Number(this.route.snapshot.paramMap.get('orderId'));
+    this.orderId = isNaN(orderIdFromRoute) ? 0 : orderIdFromRoute; // Default to 0 if invalid
   }
 
   openCitySidebar() {
@@ -239,7 +245,7 @@ export class PaymentComponent implements OnInit {
   //===========fetch order items=============
   loadCartItems(): void {
     const userId = this.authService.getUserIdNourhan();
-    if(userId){
+    if (userId) {
       this.orderService.viewCart(userId).subscribe(
         (data) => {
           console.log(data);
@@ -257,6 +263,7 @@ export class PaymentComponent implements OnInit {
   }
 
   getFormattedPrice(price: number): string {
-    return this.isArabic ? `${price} ج.م` : `EGP ${price}`;
+    const formattedPrice = price.toFixed(2); // Ensures 2 decimal places
+    return this.isArabic ? `${formattedPrice} ج.م` : `EGP ${formattedPrice}`;
   }
 }

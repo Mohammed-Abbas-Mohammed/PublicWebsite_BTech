@@ -103,3 +103,63 @@
   }
 
 
+  .payment-summary-container {
+    background-color: #f9f9f9; /* Light background for contrast */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-family: Arial, sans-serif; /* Clean and readable font */
+  }
+
+  .summary-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333; /* Dark text for title */
+  }
+
+  .amount-row,
+  .fee-row,
+  .total-amount-row {
+    margin-bottom: 10px;
+    align-items: center; /* Vertically align text */
+  }
+
+  .label {
+    font-size: 1rem;
+    color: #555; /* Slightly muted color for labels */
+  }
+
+  .value {
+    font-size: 1rem;
+    color: #000; /* Black text for values */
+  }
+
+  .total-value {
+    font-size: 1.25rem; /* Highlight the total amount */
+    color: #d9534f; /* Bootstrap danger color for emphasis */
+  }
+
+  .fw-bold {
+    font-weight: bold; /* Extra emphasis for totals */
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .payment-summary-container {
+      padding: 15px;
+    }
+
+    .summary-title {
+      font-size: 1.25rem;
+    }
+
+    .label,
+    .value {
+      font-size: 0.9rem;
+    }
+
+    .total-value {
+      font-size: 1rem;
+    }
+  }

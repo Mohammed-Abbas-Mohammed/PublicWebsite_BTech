@@ -138,7 +138,7 @@
     "selectPaymentMethod": "Select Payment Method:",
     "cashOnDelivery": "Cash on delivery",
     "paypal": "PayPal",
-    "orderSummary": "Order summary",
+    "orderSummary": "Invoice",
     "order": "Order",
     "quantity": "Quantity:",
     "items": "items",
@@ -148,7 +148,12 @@
     "havePromoCode": "I have a promo code",
     "apply": "Apply",
     "placeOrder": "Place Order",
-    "city": "The city"
+    "city": "The city",
+    "totalAmount": "Total Amount",
+    "summaryTitle": "Order Summary",
+    "amountWithoutFee": "Amount Without Fee",
+    "amountWithFee": "Total Amount",
+    "fee": "With Delivery Fee"
   },
   "orders": {
     "loading": "Loading orders...",
