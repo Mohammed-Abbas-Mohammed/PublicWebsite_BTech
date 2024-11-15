@@ -1,165 +1,189 @@
 
+.smallCart {
+  padding: 20px;
+  border-radius: 8px; /* Slightly rounded corners */
+  box-shadow: 0 4px 8px rgba(224, 230, 237, 0.5); /* Soft shadow with thin border-like effect */
+  background-color: #fff;
+}
 
-  .smallCart{
-    padding: 20px;
-    padding-top: 10px;
-    border-radius: 5px; /* Optional: rounded corners */
-    box-shadow: 0 0 0 2px rgba(224, 230, 237, 0.5); /* Thin border-like shadow */
-    background-color: white;
-  }
-  .cart-page {
+/* Cart page container with padding and clean look */
+.cart-page {
+  padding: 25px;
+  font-family: 'Arial', sans-serif;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(224, 230, 237, 0.5);
+  background-color: #fff;
+  margin: 20px;
+  margin-top: 0;
+  height: auto;
+  align-self: flex-start;
+}
 
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    /* border: 1px solid #c2bcbcbc; */
+/* Checkout button styling */
+.checkout-btn {
+  background-color: #333;
+  color: #fff;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 8px; /* Rounded button */
+}
 
-    border-radius: 5px; /* Optional: rounded corners */
-    box-shadow: 0 0 0 2px rgba(224, 230, 237, 0.5); /* Thin border-like shadow */
-    background-color: white;
-    margin: 20px; margin-top: 0px; height: auto; align-self: flex-start;
+/* Cart items and summary container */
+.cart-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
 
-  }
+.cart-items,
+.cart-summary {
+  width: 48%;
+}
 
-  .checkout-btn {
-    background-color: #000;
-    color: #fff;
+/* Hint message styling */
+.hint {
+  color: #ea9901;
+  background-color: #fff4e1;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  margin-bottom: 55px;
+  font-weight: bold;
+}
+
+/* Section number styling for accordion */
+.section-number {
+  border: 2px solid black;
+  padding: 3px 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Disabled section number styling */
+.section-number-disable {
+  border: 2px solid gray;
+  padding: 3px 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Styling for the promo section */
+#promo {
+  padding: 10px;
+  border: 1px solid gainsboro;
+  border-radius: 12px;
+}
+
+/* Promo button styling */
+#promoButton {
+  padding: 12px 18px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+#promoButton:disabled,
+.orderButton:disabled {
+  background-color: #e0e0e0;
+  color: gray;
+  border-color: #e0e0e0;
+}
+
+/* Selected label styling for the payment section */
+.selected-label {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+/* City button styling */
+.cityButton {
+  width: 100%;
+  border: 1px solid #d5d2d2;
+  background-color: white;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: left;
+}
+
+.cityButton:hover {
+  border: 1px solid #0f0e0e;
+  background-color: #f7f7f7;
+}
+
+/* Payment summary container styling */
+.payment-summary-container {
+  background-color: #f9f9f9;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Payment summary title styling */
+.summary-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 18px;
+  color: #333;
+}
+
+/* Amount row, fee row, and total amount row for alignment */
+.amount-row,
+.fee-row,
+.total-amount-row {
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.label {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.value {
+  font-size: 1.1rem;
+  color: #000;
+}
+
+.total-value {
+  font-size: 1.3rem;
+  color: #d9534f; /* Highlight total with red color */
+  font-weight: bold;
+}
+
+.fw-bold {
+  font-weight: bold;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .page-container {
+    margin: 10px;
     padding: 10px;
-    width: 100%;
-    border: none;
-    cursor: pointer;
   }
 
   .cart-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    background-color: #f9f9f9;
+    flex-direction: column;
   }
-
-  .cart-items, .cart-summary {
-    width: 48%;
-  }
-
-  .hint{
-    color: rgb(234, 153, 1);
-    background-color: rgb(255, 244, 225);
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 12px;
-    margin-bottom: 55px;
-  }
-  .section-number{
-    border: 2px black solid;
-    padding: 1px 8px;
-    border-radius: 50%;
-    display: inline-block;
-  }
-  .section-parts{
-    background-color: white;
-  }
-  .section-number-disable{
-    border: 2px gray solid;
-    padding: 1px 8px;
-    border-radius: 50%;
-    display: inline-block;
-  }
-
-
-
-  /* /////////////////////////////////// */
-
-  #promo{
-    padding: 5px;
-    border-color: gainsboro;
-    border-radius: 10px;
-  }
-
-  #promoButton{
-    padding: 10px 15px;
-  }
-  #promoButton:disabled, .orderButton:disabled{
-    background-color: gainsboro;
-    color: grey;
-    border-color: gainsboro;
-  }
-
-  .selected-label{
-    font-weight: bold;
-    font-size: 20px;
-  }
-
-
-  .cityButton{
-    width: 100%;
-    border: 1px solid rgb(213, 210, 210);
-    background-color: white;
-    border-radius: 10px;
-  }
-  .cityButton:hover{
-    width: 100%;
-    border: 1px solid rgb(15, 14, 14);
-    background-color: white;
-    border-radius: 10px;
-  }
-
 
   .payment-summary-container {
-    background-color: #f9f9f9; /* Light background for contrast */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    font-family: Arial, sans-serif; /* Clean and readable font */
+    padding: 18px;
   }
 
   .summary-title {
     font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #333; /* Dark text for title */
   }
 
-  .amount-row,
-  .fee-row,
-  .total-amount-row {
-    margin-bottom: 10px;
-    align-items: center; /* Vertically align text */
-  }
-
-  .label {
-    font-size: 1rem;
-    color: #555; /* Slightly muted color for labels */
-  }
-
+  .label,
   .value {
     font-size: 1rem;
-    color: #000; /* Black text for values */
   }
 
   .total-value {
-    font-size: 1.25rem; /* Highlight the total amount */
-    color: #d9534f; /* Bootstrap danger color for emphasis */
+    font-size: 1.1rem;
   }
-
-  .fw-bold {
-    font-weight: bold; /* Extra emphasis for totals */
-  }
-
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    .payment-summary-container {
-      padding: 15px;
-    }
-
-    .summary-title {
-      font-size: 1.25rem;
-    }
-
-    .label,
-    .value {
-      font-size: 0.9rem;
-    }
-
-    .total-value {
-      font-size: 1rem;
-    }
-  }
+}
