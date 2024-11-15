@@ -1,11 +1,101 @@
+/* Scroll Container */
 .scroll-container {
-    max-height: 400px; /* Set the max height for the scrollable area */
-    overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 80vh; /* Limit height for scrolling */
+  overflow-y: auto;
+  padding-right: 5px; /* Space for scrollbar */
+  scrollbar-width: thin; /* Firefox: Makes the scrollbar thinner */
+  scrollbar-color: #cccccc #f5f5f5; /* Firefox: Thumb and track colors */
+}
+
+/* Custom Scrollbar for WebKit Browsers */
+.scroll-container::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: #f5f5f5; /* Light background for the scrollbar track */
+  border-radius: 10px; /* Rounded edges for track */
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: #cccccc; /* Gray color for the scrollbar thumb */
+  border-radius: 10px; /* Rounded edges for thumb */
+  border: 2px solid #f5f5f5; /* Adds padding and a border around the thumb */
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background-color: #aaaaaa; /* Darker gray on hover */
+}
+
+
+/* Individual Order Card */
+.order-card {
+  max-height: 100%; /* Ensures the card fits within the scroll area */
+  margin-bottom: 10px;
+  border: 1px solid #e0e0e0; /* Soft border for better visibility */
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow for subtle depth */
+  background-color: #fdfdfd; /* Light background for readability */
+}
+
+/* Card Header */
+.card-header {
+  padding: 1rem;
+  background-color: #f8f9fa; /* Light gray for header background */
+  border-bottom: 1px solid #e0e0e0;
+  color: #333; /* Darker text for better readability */
+  font-size: 1rem;
+}
+
+/* Card Body */
+.card-body {
+  padding: 1.5rem;
+  color: #555; /* Neutral gray for body text */
+}
+
+/* List Group Item */
+.list-group-item {
+  border: none;
+  border-radius: 0.3rem;
+  margin-bottom: 0.5rem;
+  background-color: #ffffff; /* White background for list items */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Light shadow for separation */
+  font-size: 0.95rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Responsive Styling for Mobile */
+@media (max-width: 768px) {
+  .card-body {
+    padding: 1rem;
   }
-  
-  /* Individual order card */
-  .order-card {
-    max-height: 100%; /* Ensure the card fits within the scroll area */
-    margin-bottom: 10px; /* Add some spacing between cards */
-    border: 1px solid #ddd; /* Optional: Add a border for better visibility */
+
+  .list-group-item {
+    flex-direction: column;
+    align-items: flex-start;
   }
+}
+
+/* Status Badge */
+.badge {
+  font-size: 0.9rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.3rem;
+  background-color: #17a2b8; /* Soft blue for info badge */
+  color: #ffffff;
+}
+
+/* Custom Text Colors */
+.text-primary {
+  color: #0056b3; /* Soft blue for primary headers */
+}
+
+.text-danger {
+  color: #d9534f; /* Muted red for total price */
+}
+
+.text-success {
+  color: #28a745; /* Muted green for price */
+}

@@ -1,36 +1,46 @@
-<div
-  data-bs-spy="scroll"
-  data-bs-root-margin="0px 0px -40%"
-  data-bs-smooth-scroll="true"
-  class="scrollspy-example bg-body-tertiary p-3 rounded-2"
-  tabindex="0"
->
-  <div *ngIf="loading" class="text-center mt-4">
+<div data-bs-spy="scroll" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true"
+  class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+  <div *ngIf="loading" class="text-center my-4">
     <p>{{'orders.loading'|translate}}</p>
   </div>
 
   <div *ngIf="error" class="alert alert-danger mt-4">
     {{ error }}
   </div>
-
-  <div *ngIf="orders && orders.length > 0" class="scroll-container mt-4">
-    <div *ngFor="let order of orders" class="card order-card">
-      <div class="card-header">
-        <h5>{{ 'orders.order id' | translate }} {{ order.id }}</h5>
-        <p>{{'orders.date'|translate}} {{ order.orderDate | date: 'short' }}</p>
+  <div *ngIf="orders && orders.length > 0" class="scroll-container mt-4 d-flex justify-content-center flex-wrap">
+    <div *ngFor="let order of orders" class="card order-card my-4 w-100" style="max-width: 700px;">
+      <div class="card-header bg-light d-flex justify-content-between align-items-center">
+        <div>
+          <h5 class="mb-1">{{ 'orders.order id' | translate }} {{ order.id }}</h5>
+          <p class="text-muted mb-0">{{ 'orders.date' | translate }} {{ order.orderDate | date: 'short' }}</p>
+        </div>
       </div>
       <div class="card-body">
-        <p><strong>{{'orders.total price'|translate}}</strong> {{ getFormattedPrice(order.totalPrice) }}</p>
-        <p><strong>{{'orders.myStatus'|translate}}</strong> {{ getStatus(order.currentStatus) }}</p>
-        <h6>{{'orders.items'|translate}}</h6>
-        <ul class="list-group">
-          <li *ngFor="let item of order.orderItems" class="list-group-item">
-            <strong>{{ item.productName }}</strong> - {{'orders.quantity'|translate}} {{ item.quantity }}, {{'orders.price'|translate}} {{ getFormattedPrice(item.price) }}
+        <h6 class="text-primary fw-bold mb-3">{{ 'orders.items' | translate }}</h6>
+        <ul class="list-group w-100 w-md-75">
+          <li *ngFor="let item of order.orderItems"
+            class="list-group-item d-flex justify-content-between align-items-center">
+            <span>
+              <strong>{{ item.productName }}</strong> - {{ 'orders.quantity' | translate }} {{ item.quantity }}
+            </span>
+            <span class="text-success">
+              {{ 'orders.price' | translate }} {{ getFormattedPrice(item.price) }}
+            </span>
           </li>
         </ul>
+        <p class="mt-3">
+          <strong>{{ 'orders.total price' | translate }}</strong>
+          <span class="text-danger">{{ getFormattedPrice(order.totalPrice + fee) }}</span>
+        </p>
+        <p>
+          <strong>{{ 'orders.myStatus' | translate }}</strong>
+          <span class="badge bg-info text-dark">{{ getStatus(order.currentStatus) }}</span>
+        </p>
       </div>
     </div>
   </div>
+
+
 
   <div *ngIf="orders && orders.length === 0" class="text-center mt-4">
     <p>{{'orders.no orders'|translate}}</p>

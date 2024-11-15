@@ -55,7 +55,7 @@ export class PaymentComponent implements OnInit {
   deliveryDetails = { city: '' };
   paymentInfo = { cardNumber: '' };
   cartItems: any[] = [];
-  fee: number = 22;
+  fee: number = 70;
   selectedPaymentMethod: string = 'paypal';
   totalAmount: number = 100;
   isExpanded: boolean = false;

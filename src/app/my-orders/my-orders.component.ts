@@ -19,6 +19,7 @@ export class MyOrdersComponent {
   orders: any[] = [];
   loading = true;
   error: string | null = null;
+  fee: number = 70;
   constructor(
     private orderService: OrderService,
     private authservice: AuthService,

@@ -154,7 +154,7 @@
     "loading": "Loading orders...",
     "order id": "Order ID:",
     "date": "Date:",
-    "total price": "Total Price:",
+    "total price": "Total Price (incl. fee):",
     "myStatus": "Status:",
     "items": "Items:",
     "quantity": "Quantity:",
