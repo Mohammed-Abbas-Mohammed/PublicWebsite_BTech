@@ -29,6 +29,8 @@
     "@popperjs/core": "^2.11.8",
     "angular-font-awesome": "^3.1.2",
     "bootstrap": "^5.3.3",
+    "firebase": "^11.0.2",
+    "firebase-tools": "^13.25.0",
     "ngx-pagination": "^6.0.3",
     "ngx-paypal": "^11.0.0",
     "rxjs": "~7.8.0",

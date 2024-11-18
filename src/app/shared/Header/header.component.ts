@@ -137,7 +137,7 @@ export class HeaderComponent implements AfterViewInit, OnInit {
           .map((subCategory) => ({
             id: subCategory.id, // Ensure you extract the ID
             categoryName:
-              subCategory.translations?.[this.isArabic ? 1 : 0]?.categoryName ||
+              subCategory.translations?.[this.isArabic ? 0 : 1]?.categoryName ||
               '',
           }))
           .filter(Boolean);

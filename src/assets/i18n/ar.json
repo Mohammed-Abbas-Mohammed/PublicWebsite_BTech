@@ -75,7 +75,8 @@
     "enter email": "أدخل بريدك الإلكتروني",
     "enter password": "أدخل كلمة المرور",
     "please enter a valid email": "يرجى إدخال عنوان بريد إلكتروني صالح",
-    "password is required": "كلمة المرور مطلوبة"
+    "password is required": "كلمة المرور مطلوبة",
+    "incorrectCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى."
   },
   "signup": {
     "enterFullName": "أدخل اسمك بالكامل",
@@ -154,7 +155,7 @@
     "amountWithoutFee": "المبلغ بدون الرسوم",
     "amountWithFee": "المبلغ الإجمالي",
     "fee": "برسوم التوصيل"
-    },
+  },
   "orders": {
     "loading": "جارٍ تحميل الطلبات...",
     "order id": "رقم الطلب:",

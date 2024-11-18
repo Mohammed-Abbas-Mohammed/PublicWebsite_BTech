@@ -1,0 +1,88 @@
+{
+
+    "products": [
+      {
+        "name": "Samsung TV",
+        "price": 4999,
+        "image": "assets/products/tv.jpg",
+        "category": "TVs",
+        "brand": "Samsung"
+      },
+      {
+        "name": "iPhone 13",
+        "price": 19999,
+        "image": "assets/products/iphone.jpg",
+        "category": "Mobiles",
+        "brand": "Apple"
+      },
+      {
+        "name": "Dell Laptop",
+        "price": 15999,
+        "image": "assets/products/laptop.jpg",
+        "category": "Tablets",
+        "brand": "Dell"
+      },
+      {
+        "name": "LG Refrigerator",
+        "price": 8000,
+        "image": "assets/products/fridge.jpg",
+        "category": "Large Home Appliances",
+        "brand": "LG"
+      },
+      {
+        "name": "Sony Headphones",
+        "price": 300,
+        "image": "assets/products/headphones.jpg",
+        "category": "Audio",
+        "brand": "Sony"
+      }
+    ],
+
+
+
+  "categories": [
+    {
+      "id": "1",
+      "name": "Laptops"
+    },
+    {
+      "id": "2",
+      "name": "Tablets"
+    },
+    {
+      "id": "3",
+      "name": "Mobiles"
+    }
+  ],
+
+  "Images": [
+    { "url_en": "/assets/images/1.jpg", "url_ar": "/assets/images/10.jpg", "createdAt": "2024-10-1T11:31:00Z" },
+    { "url_en": "/assets/images/2.jpg", "url_ar": "/assets/images/11.jpg", "createdAt": "2024-10-2T11:32:00Z" },
+    { "url_en": "/assets/images/3.png", "url_ar": "/assets/images/12.png", "createdAt": "2024-10-3T11:33:00Z" },
+    { "url_en": "/assets/images/4.png", "url_ar": "/assets/images/13.png", "createdAt": "2024-10-4T11:34:00Z" },
+    { "url_en": "/assets/images/5.png", "url_ar": "/assets/images/14.png", "createdAt": "2024-10-5T11:36:00Z" },
+    { "url_en": "/assets/images/6.png", "url_ar": "/assets/images/15.png", "createdAt": "2024-10-6T11:37:00Z" },
+    { "url_en": "/assets/images/7.png", "url_ar": "/assets/images/16.jpg", "createdAt": "2024-10-7T11:38:00Z" },
+    { "url_en": "/assets/images/8.png", "url_ar": "/assets/images/17.jpg", "createdAt": "2024-10-8T11:39:00Z" }
+  ],
+
+  "brands":[
+
+      { "name": "Samsung Shop", "icon": "https://btech.com/media/homecontent/category/cache/96x96/l/o/logo-round.png" },
+      { "name": "Daily Deals", "icon": "https://btech.com/media/homecontent/category/o/c/october_app_icons__highlight_12_100x100.png" },
+      { "name": "Cash Offers", "icon": "https://btech.com/media/homecontent/category/o/c/october_app_icons__highlight_17_100x100_en.png" },
+      { "name": "Cooking Offers", "icon": "https://btech.com/media/homecontent/category/cache/96x96/c/o/cookingfestival_generic__highlight_100x100_en.png" },
+      { "name": "Mobiles", "icon": "https://btech.com/media/homecontent/category/cache/96x96/o/c/october_app_icons__highlight_03_100x100.png"},
+      { "name": "TVs", "icon": "https://btech.com/media/homecontent/category/cache/96x96/o/c/october_app_icons__highlight_02_100x100.png" },
+      { "name": "Air Conditioners", "icon": "https://btech.com/media/homecontent/category/cache/96x96/o/c/october_app_icons__highlight_22_100x100.png" },
+      { "name": "Small Home Appliances", "icon": "https://btech.com/media/homecontent/category/cache/96x96/o/c/october_app_icons__highlight_05_100x100.png" },
+      { "name": "Large Home Appliances", "icon": "https://btech.com/media/homecontent/category/cache/96x96/o/c/october_app_icons__highlight_04_100x100.png" },
+      { "name": "Laptop", "icon": "https://btech.com/media/homecontent/category/cache/96x96/o/c/october_app_icons__highlight_07_100x100.png" },
+      { "name": "Accessories", "icon": "https://btech.com/media/homecontent/category/cache/96x96/o/c/october_app_icons__highlight_06_100x100.png" },
+      { "name": "Electronics", "icon": "https://btech.com/media/homecontent/category/cache/96x96/o/c/october_app_icons__highlight_01_100x100.png" },
+      { "name": "Personal Care", "icon": "https://btech.com/media/homecontent/category/cache/96x96/o/c/october_app_icons__highlight_08_100x100.png" }
+
+
+
+  ]
+}
