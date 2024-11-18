@@ -147,6 +147,7 @@
             {{ "payment.order" | translate }} {{ i + 1 }}
           </p>
           <div class="shadow-sm rounded p-3">
+            <img [src]="order.imageUrl" alt="Product Image" class="col-md-2">
             <p class="col-md-12 text-start">{{ order.productName }}</p>
             <!-- <p class="col-md-4 text-end">{{ getFormattedPrice(order.productPrice)}}</p> -->
           </div>

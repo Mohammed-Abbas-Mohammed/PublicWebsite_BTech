@@ -124,7 +124,7 @@ export class PaypalButtonComponent implements OnInit {
             items: [
               {
                 name: 'Enterprise Subscription',
-                quantity: '1',
+                quantity: '10',
                 category: 'DIGITAL_GOODS',
                 unit_amount: {
                   currency_code: 'EUR',

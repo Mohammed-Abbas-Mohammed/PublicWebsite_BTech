@@ -1,6 +1,5 @@
-
 import { Component, OnInit } from '@angular/core';
-import {OrderService} from '../../service/Order/order.service'
+import { OrderService } from '../../service/Order/order.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,16 +9,14 @@ import { AuthService } from '../../service/Identity/auth.service';
 import { ViewChild } from '@angular/core';
 import { LocalizationService } from '../../service/localiztionService/localization.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-
-
-
+import { AllproductsService } from '../../service/product/allproducts.service';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, FormsModule,TranslateModule],
+  imports: [CommonModule, FormsModule, TranslateModule],
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
   isArabic!: boolean;
@@ -29,29 +26,29 @@ export class CartComponent implements OnInit {
   totalCost: number = 0;
   n = 10; // Change this to set the maximum number
   numbers: number[] = [];
-  Quantity:number = 0;
-  orderId:number = 0;
-  userId:string | null = null;
+  Quantity: number = 0;
+  orderId: number = 0;
+  userId: string | null = null;
   @ViewChild('logFirstModal') confirmRemoveModal: any;
 
-
-  constructor(private orderService: OrderService, private router:Router, private modalService: NgbModal,
-    private authService: AuthService,private translate: LocalizationService,
-
+  constructor(
+    private orderService: OrderService,
+    private router: Router,
+    private modalService: NgbModal,
+    private authService: AuthService,
+    private translate: LocalizationService,
+    private product: AllproductsService
   ) {
     this.generateNumbers(this.n);
     this.userId = this.authService.getUserIdNourhan();
     console.log('User ID:', this.userId);
     this.translate.IsArabic.subscribe((ar) => (this.isArabic = ar));
-
-
   }
 
   ngOnInit(): void {
-    if(this.userId == null){
+    if (this.userId == null) {
       this.confirmLogModal();
-    }
-    else this.loadCartItems();
+    } else this.loadCartItems();
   }
 
   ////////////////////////////////////////
@@ -60,16 +57,15 @@ export class CartComponent implements OnInit {
     this.modalService.open(this.confirmRemoveModal).result.then((result) => {
       if (result === 'Remove') {
         this.goToHome();
-      }
-      else this.goToCart();
+      } else this.goToCart();
     });
   }
 
-  goToHome():void{
+  goToHome(): void {
     this.router.navigate(['/']);
   }
 
-  goToCart():void{
+  goToCart(): void {
     this.router.navigate(['/sign-in']);
   }
 
@@ -79,17 +75,22 @@ export class CartComponent implements OnInit {
     this.numbers = Array.from({ length: n }, (_, i) => i + 1);
   }
 
-
   calculateTotalCost() {
-    this.totalCost = this.cartItems.reduce((sum, item) => sum + item.productPrice * item.quantity, 0);
+    this.totalCost = this.cartItems.reduce(
+      (sum, item) => sum + item.productPrice * item.quantity,
+      0
+    );
   }
-  calulateQuantity(){
-    this.Quantity = this.cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  calulateQuantity() {
+    this.Quantity = this.cartItems.reduce(
+      (sum, item) => sum + item.quantity,
+      0
+    );
   }
 
   // Load items in the cart based on userId
   loadCartItems(): void {
-    if(this.userId){
+    if (this.userId) {
       this.orderService.viewCart(this.userId).subscribe(
         (data) => {
           console.log(data);
@@ -104,6 +105,7 @@ export class CartComponent implements OnInit {
       );
     }
   }
+
 
   // Add product to the cart
   // addToCart(productId: number): void {
@@ -125,35 +127,44 @@ export class CartComponent implements OnInit {
   updateQuantity(orderItemId: number, newQuantity: number): void {
     console.log(orderItemId, newQuantity);
 
-    this.orderService.updateOrderItemQuantity(orderItemId, newQuantity).subscribe(
-      (response) => {
-        console.log('Quantity updated successfully', response);
-        this.loadCartItems();
-      },
-      (error) => {
-        console.error('Error updating quantity', error);
-      }
-    );
+    this.orderService
+      .updateOrderItemQuantity(orderItemId, newQuantity)
+      .subscribe(
+        (response) => {
+          console.log('Quantity updated successfully', response);
+          this.loadCartItems();
+        },
+        (error) => {
+          console.error('Error updating quantity', error);
+        }
+      );
   }
 
   // Delete order item
   deleteOrderItem(id: number) {
-    if(id >= 0){
+    if (id >= 0) {
       this.orderService.deleteOrderItem(id).subscribe({
         next: () => {
-          this.cartItems = this.cartItems.filter(item => item.orderItemId !== id);
+          this.cartItems = this.cartItems.filter(
+            (item) => item.orderItemId !== id
+          );
           this.calculateTotalCost();
           this.loadCartItems();
         },
         error: (error: HttpErrorResponse) => {
-          console.error("Error deleting order item", error);
+          console.error('Error deleting order item', error);
           // Log details for further debugging
-          console.log("Error details:", error.message, error.status, error.error);
-        }
+          console.log(
+            'Error details:',
+            error.message,
+            error.status,
+            error.error
+          );
+        },
       });
     }
   }
-  openRemoveModal(content: any, id:number) {
+  openRemoveModal(content: any, id: number) {
     this.modalService.open(content).result.then((result) => {
       if (result === 'Remove') {
         this.deleteOrderItem(id);
@@ -172,7 +183,7 @@ export class CartComponent implements OnInit {
     }
   }
 
-  navigateToHome():void{
+  navigateToHome(): void {
     this.router.navigate(['/']);
   }
 
@@ -180,5 +191,4 @@ export class CartComponent implements OnInit {
     const formattedPrice = price.toFixed(2); // Ensures 2 decimal places
     return this.isArabic ? `${formattedPrice} ج.م` : `EGP ${formattedPrice}`;
   }
-
 }
