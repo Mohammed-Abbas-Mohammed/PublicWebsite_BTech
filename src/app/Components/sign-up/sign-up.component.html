@@ -62,7 +62,9 @@
             [placeholder]="'signup.createPassword' | translate" required />
           <div class="invalid-feedback"
             *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched">
-            {{'signup.passwordLength'|translate}}
+            <div *ngIf="passwordErrorMessage" class="error">
+              {{ passwordErrorMessage }}
+            </div>
           </div>
         </div>
 

@@ -20,7 +20,24 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 export class SignUpComponent {
   signUpForm: FormGroup;
   isArabic!: boolean;
-
+  translationData = {
+    en: {
+      passwordValidation: {
+        required: 'Password is required',
+        minLength: 'Password must be at least 6 characters',
+        pattern:
+          'Password must include an uppercase letter, a lowercase letter, a number, and a special character',
+      },
+    },
+    ar: {
+      passwordValidation: {
+        required: 'كلمة المرور مطلوبة',
+        minLength: 'يجب أن تكون كلمة المرور 6 أحرف على الأقل',
+        pattern:
+          'يجب أن تحتوي كلمة المرور على حرف كبير، حرف صغير، رقم، وحرف خاص',
+      },
+    },
+  };
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -42,8 +59,10 @@ export class SignUpComponent {
           [
             Validators.required,
             Validators.minLength(6),
-            Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*(),.?":{}|<>]).+$')
-          ]
+            Validators.pattern(
+              '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*(),.?":{}|<>]).+$'
+            ),
+          ],
         ],
         confirmPassword: ['', Validators.required],
       },
@@ -90,5 +109,24 @@ export class SignUpComponent {
 
   signin() {
     this.router.navigate(['sign-in']);
+  }
+
+  get passwordErrorMessage(): string {
+    const passwordControl = this.signUpForm.get('password');
+    const currentTranslation = this.isArabic
+      ? this.translationData.ar
+      : this.translationData.en;
+
+    if (passwordControl?.hasError('required')) {
+      return currentTranslation.passwordValidation.required;
+    }
+    if (passwordControl?.hasError('minlength')) {
+      // Use lowercase 'minlength' for error key
+      return currentTranslation.passwordValidation.minLength;
+    }
+    if (passwordControl?.hasError('pattern')) {
+      return currentTranslation.passwordValidation.pattern;
+    }
+    return '';
   }
 }
