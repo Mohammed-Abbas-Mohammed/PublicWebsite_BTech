@@ -97,7 +97,7 @@ export class HeaderComponent implements AfterViewInit, OnInit {
 
         // Use reduce to create a unique list directly
         this.categories = res.reduce((uniqueCategories, item) => {
-          const translationIndex = this.isArabic ? 1 : 0;
+          const translationIndex = this.isArabic ? 0 : 1;
           const categoryId = item.category?.id;
           const categoryName =
             item.category?.translations?.[translationIndex]?.categoryName;
